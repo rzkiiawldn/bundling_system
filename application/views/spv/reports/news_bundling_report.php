@@ -65,11 +65,17 @@
                       </td>
                       <td>
                         <?php if (!empty($this->uri->segment(4))) { ?>
+                          <?php if ($row['status'] == 1) { ?>
+                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                          <?php } ?>
                           <a href="<?= base_url('spv/reports/nb_detail_news/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="<?= base_url('spv/reports/nb_edit_news/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="ubah status"><i class="fas fa-pen"></i></a>
+                          <a href="#" data-toggle="modal" data-target="#edit<?= $row['id_news'] ?>" class="btn btn-sm btn-success" title="ubah status"><i class="fas fa-pen"></i></a>
                         <?php } else { ?>
+                          <?php if ($row['status'] == 1) { ?>
+                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                          <?php } ?>
                           <a href="<?= base_url('spv/reports/nb_detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="<?= base_url('spv/reports/nb_edit/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="ubah status"><i class="fas fa-pen"></i></a>
+                          <a href="#" data-toggle="modal" data-target="#edit<?= $row['id_news'] ?>" class="btn btn-sm btn-success" title="ubah status"><i class="fas fa-pen"></i></a>
                         <?php } ?>
                       </td>
                     </tr>
@@ -83,3 +89,43 @@
     </div>
   </section>
 </div>
+
+<?php foreach ($news as $row) : ?>
+  <div class="modal fade" id="edit<?= $row['id_news'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Status</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?= base_url('spv/reports/edit_status') ?>" method="post">
+          <div class="modal-body">
+            <?php if (!empty($this->uri->segment(4))) { ?>
+              <input type="hidden" value="<?= $this->uri->segment(4) ?>" name="id">
+            <?php } ?>
+            <input type="hidden" name="id_news" value="<?= $row['id_news'] ?>">
+            <div class="form-group">
+              <label>Status</label>
+              <select name="status" class="form-control" required>
+                <option value="" selected disabled>-- select --</option>
+                <?php if ($row['status'] == 0) { ?>
+                  <option value="0" selected>Pending</option>
+                  <option value="1">confirmation</option>
+                <?php } else { ?>
+                  <option value="0">Pending</option>
+                  <option value="1" selected>Confirmation</option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php endforeach; ?>

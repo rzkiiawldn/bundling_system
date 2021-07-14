@@ -31,27 +31,33 @@
               <div class="col-sm-4 invoice-col">
                 From
                 <address>
-                  <strong>?</strong><br>
-                  Phone: +62<br>
-                  Email: email
+                  <strong><?= $request_bundling['created']; ?></strong><br>
+                  <!-- Phone: +62<br> -->
+                  <?php $from = $this->db->get_where('user', ['fullname' => $request_bundling['created']])->row_array() ?>
+                  Email: <?= $from['email']; ?>
                 </address>
               </div>
               <!-- /.col -->
               <div class="col-sm-4 invoice-col">
                 To
                 <address>
-                  <strong><?= $request_bundling['id_client']; ?></strong><br>
-                  Lokasi<br>
-                  Phone: +62<br>
-                  Email: email
+                  <strong><?= $request_bundling['client_name']; ?></strong><br>
+                  <?= $request_bundling['location_name']; ?><br>
+                  <!-- Phone: +62<br> -->
+                  <?php $to = $this->db->get_where('user', ['fullname' => $request_bundling['created_by']])->row_array() ?>
+                  Email: <?= $request_bundling['email']; ?>
                 </address>
+              </div>
+
+              <div class="col-sm-4">
+                <img src="<?= base_url('assets/logo.png') ?>" alt="" width="80%" style="margin-top: -40px;" class="float-right">
               </div>
               <!-- /.col -->
             </div>
             <!-- /.row -->
 
             <!-- Table row -->
-            <div class="row mb-5">
+            <div class="row my-4">
               <div class="col-12 table-responsive">
                 <table class="table table-striped">
                   <thead>
@@ -64,14 +70,64 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $bundling_detail = $this->db->get_where('item_bundling_detail', ['id_item_bundling' => $request_bundling['id_item_bundling']])->result_array() ?>
-                    <?php foreach ($bundling_detail as $row) : ?>
+                    <?php $item = $request_bundling['id_item_bundling']; ?>
+                    <?php $bundling = $this->db->query(" SELECT * FROM item_bundling WHERE id_item_bundling = $item ")->result_array() ?>
+                    <?php $bundling_detail = $this->db->query(" SELECT * FROM item_bundling_detail AS ibd JOIN item_bundling AS ib ON ibd.id_item_bundling = ib.id_item_bundling JOIN item_nonbundling AS inb ON ibd.id_item_nonbundling = inb.id_item_nonbundling WHERE ibd.id_item_bundling = $item ")->result_array() ?>
+                    <?php foreach ($bundling as $row) : ?>
                       <tr>
-                        <td><?= $row['id_item_bundling']; ?></td>
-                        <td><?= $row['id_item_nonbundling']; ?></td>
-                        <td><?= $row['item_qty']; ?></td>
-                        <td>?</td>
-                        <td>?</td>
+                        <td>
+                          <?= $row['item_bundling_name']; ?> <br> detail : <br>
+                          <ul>
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                <?= $bd['item_nonbundling_name']; ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
+                        <td>
+
+                          <ul style="margin-top: 45px;list-style-type: none;">
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                <?= $bd['item_nonbundling_code']; ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
+
+                        <td>
+
+                          <ul style="margin-top: 45px;list-style-type: none;">
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                ?
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
+
+                        <td>
+
+                          <ul style="margin-top: 45px;list-style-type: none;">
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                <?= $bd['item_qty']; ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
+                        <td>
+
+                          <ul style="margin-top: 45px;list-style-type: none;">
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                <?= $bd['weight']; ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
+
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

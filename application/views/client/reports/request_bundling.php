@@ -54,7 +54,15 @@
                       <td><?= $row['item_bundling_name']; ?></td>
                       <td><?= $row['request_quantity']; ?></td>
                       <td><?= $row['packing_type']; ?></td>
-                      <td><?= $row['status']; ?></td>
+                      <td>
+                        <?php if ($row['status'] == 'process' || $row['status'] == 'request') { ?>
+                          <span class="badge badge-warning"><?= $row['status']; ?></span>
+                        <?php } elseif ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
+                          <span class="badge badge-success"><?= $row['status']; ?></span>
+                        <?php } else { ?>
+                          <span class="badge badge-danger"><?= $row['status']; ?></span>
+                        <?php }  ?>
+                      </td>
                       <td class="text-center">
                         <a href="<?= base_url('client/reports/detail_request/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="print"><i class="fas fa-print"></i></a>
                         <a href="<?= base_url('client/reports/detail_request/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>

@@ -99,70 +99,58 @@
                       <?php endforeach ?>
                     </select>
                     <?= form_error('id_status', '<small class="text-danger pl-2">', '</small>'); ?>
-                  </div>
+                  </div><?php if (!empty($this->uri->segment(6))) { ?>
                 </div>
-                <?php if (!empty($this->uri->segment(6))) { ?>
-                <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>location *</label>
-                      <?php foreach ($location as $row) : ?>
-                        <?php if ($this->uri->segment(4) == $row['id_location']) { ?>
-                          <input type="text" class="form-control" value="<?= $row['location_name']; ?>" readonly>
-                          <input type="hidden" class="form-control" name="id_location" value="<?= $row['id_location']; ?>" readonly>
-                        <?php } ?>
-                      <?php endforeach; ?>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>client *</label>
-                      <select name="id_client" id="id_client" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
-                        <?php foreach ($client as $row) : ?>
-                          <?php if ($row['id_client'] == $request_bundling['id_client']) { ?>
-                            <option value="<?= $row['id_client'] ?>" selected><?= $row['client_name']; ?></option>
-                          <?php } else { ?>
-                            <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
-                          <?php } ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                  </div>
-                <?php } else { ?>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>location *</label>
-                      <select name="id_location" id="id_location" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
-                        <?php foreach ($location as $row) : ?>
-                          <?php if ($row['id_location'] == $request_bundling['id_location']) { ?>
-                            <option value="<?= $row['id_location'] ?>" selected><?= $row['location_name']; ?></option>
-                          <?php } else { ?>
-                            <option value="<?= $row['id_location'] ?>"><?= $row['location_name']; ?></option>
-                          <?php } ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>client *</label>
-                      <select name="id_client" id="id_client" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
-                        <?php foreach ($client as $row) : ?>
-                          <?php if ($row['id_client'] == $request_bundling['id_client']) { ?>
-                            <option value="<?= $row['id_client'] ?>" selected><?= $row['client_name']; ?></option>
-                          <?php } else { ?>
-                            <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
-                          <?php } ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                  </div>
-                <?php } ?>
-                <button type="submit" class="btn btn-info float-right">EDIT</button>
+              <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
+                <?php $client = $this->db->get_where('client', ['id_location' => $this->uri->segment('4')])->result_array() ?>
               </div>
-            </form>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>location *</label>
+                  <?php foreach ($location as $row) : ?>
+                    <?php if ($this->uri->segment(4) == $row['id_location']) { ?>
+                      <input type="text" class="form-control" value="<?= $row['location_name']; ?>" readonly>
+                    <?php } ?>
+                  <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>client *</label>
+                  <select name="id_client" id="id_client" class="form-control" required>
+                    <option value="" selected disabled>-- pilih --</option>
+                    <?php foreach ($client as $row) : ?>
+                      <?php if ($row['id_client'] == $request_bundling['id_client']) { ?>
+                        <option value="<?= $row['id_client'] ?>" selected><?= $row['client_name']; ?></option>
+                      <?php } else { ?>
+                        <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
+                      <?php } ?>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+            <?php } else { ?>
+
+              <?php $client = $this->db->get('client')->result_array() ?>
+              <div class="form-group col-md-6">
+                <label>client *</label>
+                <select name="id_client" id="id_client" class="form-control" required>
+                  <option value="" selected disabled>-- pilih --</option>
+                  <?php foreach ($client as $row) : ?>
+                    <?php if ($row['id_client'] == $request_bundling['id_client']) { ?>
+                      <option value="<?= $row['id_client'] ?>" selected><?= $row['client_name']; ?></option>
+                    <?php } else { ?>
+                      <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
+                    <?php } ?>
+                  <?php endforeach; ?>
+                </select>
+              </div>
           </div>
+        <?php } ?>
+        <button type="submit" class="btn btn-info float-right">EDIT</button>
         </div>
+        </form>
       </div>
-  </section>
+    </div>
+</div>
+</section>
 </div>

@@ -59,6 +59,9 @@
                           <span class="badge badge-sm badge-success">Diterima</span>
                         <?php } ?>
                       <td>
+                        <?php if ($row['status'] == 1) { ?>
+                          <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                        <?php } ?>
                         <a href="<?= base_url('client/reports/detail_news/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                       </td>
                     </tr>

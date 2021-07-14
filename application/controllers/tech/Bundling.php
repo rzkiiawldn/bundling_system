@@ -18,9 +18,9 @@ class Bundling extends CI_Controller
     $id2 = $id_client;
 
     if ($id1 != null and empty($id2)) {
-      $item = $this->db->query("SELECT * FROM item_bundling WHERE id_location = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM item_bundling AS inb JOIN client ON inb.id_client = client.id_client WHERE client.id_location = $id1")->result_array();
     } elseif ($id2 != null) {
-      $item = $this->db->query("SELECT * FROM item_bundling WHERE id_client = $id2 AND id_location = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM item_bundling AS inb JOIN client ON inb.id_client = client.id_client WHERE inb.id_client = $id2 AND client.id_location = $id1")->result_array();
     } else {
       $item = $this->db->get('item_bundling')->result_array();
     }
@@ -28,7 +28,6 @@ class Bundling extends CI_Controller
     $data = [
       'judul'             => 'Item Bundling',
       'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'manage_by'         => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
       'item_bundling'     => $item
@@ -107,7 +106,6 @@ class Bundling extends CI_Controller
       'manage_by'         => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
       'id_location'       => $id1,
       'id_client'         => $id2,
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'item_nonbundling'  => $this->db->get('item_nonbundling')->result_array(),
       'select'            => ['Yes', 'No']
@@ -131,7 +129,6 @@ class Bundling extends CI_Controller
         'qty'                      => 0,
         'total_price'              => 0,
         'id_client'                => htmlspecialchars($this->input->post('id_client')),
-        'id_location'              => htmlspecialchars($this->input->post('id_location')),
         'created_date'             => date('Y-m-d'),
         'created_by'               => $this->session->userdata('fullname'),
       ];
@@ -331,7 +328,6 @@ class Bundling extends CI_Controller
   {
     $data = [
       'judul'             => 'Edit Item Bundling',
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'manage_by'         => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
@@ -355,14 +351,12 @@ class Bundling extends CI_Controller
       $item_bundling_name          = htmlspecialchars($this->input->post('item_bundling_name'));
       $item_bundling_barcode       = htmlspecialchars($this->input->post('item_bundling_barcode'));
       $manage_by                   = htmlspecialchars($this->input->post('manage_by'));
-      $id_location                 = htmlspecialchars($this->input->post('id_location'));
       $id_client                   = htmlspecialchars($this->input->post('id_client'));
 
       $this->db->set('item_bundling_code', $item_bundling_code);
       $this->db->set('item_bundling_name', $item_bundling_name);
       $this->db->set('item_bundling_barcode', $item_bundling_barcode);
       $this->db->set('manage_by', $manage_by);
-      $this->db->set('id_location', $id_location);
       $this->db->set('id_client', $id_client);
       $this->db->where('id_item_bundling', $id_item_bundling);
       $this->db->update('item_bundling');
@@ -376,7 +370,6 @@ class Bundling extends CI_Controller
     $id1 = $id_location;
     $data = [
       'judul'             => 'Edit Item Bundling',
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'manage_by'         => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
@@ -401,14 +394,12 @@ class Bundling extends CI_Controller
       $item_bundling_name          = htmlspecialchars($this->input->post('item_bundling_name'));
       $item_bundling_barcode       = htmlspecialchars($this->input->post('item_bundling_barcode'));
       $manage_by                   = htmlspecialchars($this->input->post('manage_by'));
-      $id_location                 = htmlspecialchars($this->input->post('id_location'));
       $id_client                   = htmlspecialchars($this->input->post('id_client'));
 
       $this->db->set('item_bundling_code', $item_bundling_code);
       $this->db->set('item_bundling_name', $item_bundling_name);
       $this->db->set('item_bundling_barcode', $item_bundling_barcode);
       $this->db->set('manage_by', $manage_by);
-      $this->db->set('id_location', $id_location);
       $this->db->set('id_client', $id_client);
       $this->db->where('id_item_bundling', $id_item_bundling);
       $this->db->update('item_bundling');
@@ -567,9 +558,9 @@ class Bundling extends CI_Controller
     $id2 = $id_client;
 
     if ($id1 != null and empty($id2)) {
-      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status WHERE rb.id_location = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status JOIN client ON rb.id_client = client.id_client WHERE client.id_location = $id1")->result_array();
     } elseif ($id2 != null) {
-      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status WHERE rb.id_client = $id2 AND rb.id_location = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status JOIN client ON rb.id_client = client.id_client WHERE rb.id_client = $id2 AND client.id_location = $id1")->result_array();
     } else {
       $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status")->result_array();
     }
@@ -653,7 +644,6 @@ class Bundling extends CI_Controller
       'item_bundling'     => $this->db->get('item_bundling')->result_array(),
       'id_location'       => $id1,
       'id_client'         => $id2,
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
     ];
     $this->form_validation->set_rules('request_bundling_code', 'request_bundling_code', 'required|trim');
@@ -678,9 +668,9 @@ class Bundling extends CI_Controller
         'request_quantity'            => htmlspecialchars($this->input->post('request_quantity')),
         'packing_type'                => $this->input->post('packing_type'),
         'id_status'                   => $this->input->post('id_status'),
-        'id_user'                     => $data['user']['fullname'],
         'id_client'                   => $this->input->post('id_client'),
-        'id_location'                 => $this->input->post('id_location'),
+        'created_date'                => date('Y-m-d'),
+        'created_by'                  => $data['user']['fullname'],
       ];
       $this->db->insert('request_bundling', $data);
 
@@ -703,7 +693,6 @@ class Bundling extends CI_Controller
       'packing_type'      => ['PLASTIC', 'BOX', 'BUBBLE WRAP', 'TOTEBAG', "WRAPPING"],
       'item_bundling'     => $this->db->get('item_bundling')->result_array(),
       'status'            => $this->db->get('status')->result_array(),
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
     ];
@@ -729,7 +718,6 @@ class Bundling extends CI_Controller
       $request_quantity           = htmlspecialchars($this->input->post('request_quantity'));
       $packing_type               = htmlspecialchars($this->input->post('packing_type'));
       $id_status                  = htmlspecialchars($this->input->post('id_status'));
-      $id_location                = htmlspecialchars($this->input->post('id_location'));
       $id_client                  = htmlspecialchars($this->input->post('id_client'));
 
       $this->db->set('request_bundling_barcode', $request_bundling_barcode);
@@ -739,7 +727,6 @@ class Bundling extends CI_Controller
       $this->db->set('request_quantity', $request_quantity);
       $this->db->set('packing_type', $packing_type);
       $this->db->set('id_status', $id_status);
-      $this->db->set('id_location', $id_location);
       $this->db->set('id_client', $id_client);
       $this->db->where('id_request_bundling', $id_request_bundling);
       $this->db->update('request_bundling');
@@ -758,7 +745,6 @@ class Bundling extends CI_Controller
       'packing_type'      => ['PLASTIC', 'BOX', 'BUBBLE WRAP', 'TOTEBAG', "WRAPPING"],
       'item_bundling'     => $this->db->get('item_bundling')->result_array(),
       'status'            => $this->db->get('status')->result_array(),
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'id_location'       => $id1,
       'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
@@ -785,7 +771,6 @@ class Bundling extends CI_Controller
       $request_quantity           = htmlspecialchars($this->input->post('request_quantity'));
       $packing_type               = htmlspecialchars($this->input->post('packing_type'));
       $id_status                  = htmlspecialchars($this->input->post('id_status'));
-      $id_location                = htmlspecialchars($this->input->post('id_location'));
       $id_client                  = htmlspecialchars($this->input->post('id_client'));
 
       $this->db->set('request_bundling_barcode', $request_bundling_barcode);
@@ -795,7 +780,6 @@ class Bundling extends CI_Controller
       $this->db->set('request_quantity', $request_quantity);
       $this->db->set('packing_type', $packing_type);
       $this->db->set('id_status', $id_status);
-      $this->db->set('id_location', $id_location);
       $this->db->set('id_client', $id_client);
       $this->db->where('id_request_bundling', $id_request_bundling);
       $this->db->update('request_bundling');

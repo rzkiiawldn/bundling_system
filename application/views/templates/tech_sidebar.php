@@ -31,42 +31,27 @@
           <div class="form-group">
             <select class="form-control select2bs4" onchange="location = this.options[this.selectedIndex].value;">
               <option value="" selected disabled>--location--</option>
-              <?php if (!empty($this->uri->segment(5))) { ?>
-                <?php foreach ($location as $row) : ?>
-                  <?php if ($row['id_location'] == $this->uri->segment(4)) { ?>
-                    <option value="<?= base_url('tech/dashboard/index/' . $row['id_location'] . '/' . $this->uri->segment(5)) ?>" selected><?= $row['location_name']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?= base_url('tech/dashboard/index/' . $row['id_location'] . '/' . $this->uri->segment(5)) ?>"><?= $row['location_name']; ?></option>
-                  <?php } ?>
-                <?php endforeach; ?>
-              <?php } else { ?>
-                <?php foreach ($location as $row) : ?>
-                  <?php if ($row['id_location'] == $this->uri->segment(4)) { ?>
-                    <option value="<?= base_url('tech/dashboard/index/' . $row['id_location']) ?>" selected><?= $row['location_name']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?= base_url('tech/dashboard/index/' . $row['id_location']) ?>"><?= $row['location_name']; ?></option>
-                  <?php } ?>
-                <?php endforeach; ?>
-              <?php } ?>
+              <?php foreach ($location as $row) : ?>
+                <?php if ($row['id_location'] == $this->uri->segment(4)) { ?>
+                  <option value="<?= base_url('tech/dashboard/index/' . $row['id_location']) ?>" selected><?= $row['location_name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?= base_url('tech/dashboard/index/' . $row['id_location']) ?>"><?= $row['location_name']; ?></option>
+                <?php } ?>
+              <?php endforeach; ?>
             </select>
           </div>
           <div class="form-group">
             <select class="form-control select2bs4" onchange="location = this.options[this.selectedIndex].value;">
               <option value="" selected disabled>--client--</option>
-              <?php if (empty($this->uri->segment(4))) { ?>
-              <?php } else { ?>
-                <?php $uri4 = $this->db->get_where('location', ['id_location' => $this->uri->segment(4)])->row() ?>
-                <!-- JIKA ADA MAKA LAKUKAN INI -->
-                <?php if (!empty($uri4)) { ?>
-                  <?php foreach ($client as $row) : ?>
-                    <?php if ($row['id_client'] == $this->uri->segment(5)) { ?>
-                      <option value="<?= base_url('tech/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>" selected><?= $row['client_name']; ?></option>
-                    <?php } else { ?>
-                      <option value="<?= base_url('tech/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>"><?= $row['client_name']; ?></option>
-                    <?php } ?>
-                  <?php endforeach; ?>
-                <?php } else { ?>
-                <?php } ?>
+              <?php if (!empty($this->uri->segment(4))) { ?>
+                <?php $client = $this->db->get_where('client', ['id_location' => $this->uri->segment(4)])->result_array() ?>
+                <?php foreach ($client as $row) : ?>
+                  <?php if ($row['id_client'] == $this->uri->segment(5)) { ?>
+                    <option value="<?= base_url('tech/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>" selected><?= $row['client_name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?= base_url('tech/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>"><?= $row['client_name']; ?></option>
+                  <?php } ?>
+                <?php endforeach; ?>
               <?php } ?>
             </select>
           </div>
@@ -194,6 +179,18 @@
                 <a href="<?= base_url('tech/setup/client'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Client</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('tech/setup/admin_ops'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin Operation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('tech/setup/spv'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Supervisior</p>
                 </a>
               </li>
               <li class="nav-item">

@@ -56,7 +56,15 @@
                       <td><?= $row['item_bundling_name']; ?></td>
                       <td><?= $row['request_quantity']; ?></td>
                       <td><?= $row['packing_type']; ?></td>
-                      <td><?= $row['status']; ?></td>
+                      <td>
+                        <?php if ($row['status'] == 'process' || $row['status'] == 'request') { ?>
+                          <span class="badge badge-warning"><?= $row['status']; ?></span>
+                        <?php } elseif ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
+                          <span class="badge badge-success"><?= $row['status']; ?></span>
+                        <?php } else { ?>
+                          <span class="badge badge-danger"><?= $row['status']; ?></span>
+                        <?php }  ?>
+                      </td>
                       <td class="text-center">
                         <?php if (!empty($this->uri->segment(5))) { ?>
                           <a href="<?= base_url('tech/reports/rb_detailll/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' .  $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
@@ -99,7 +107,9 @@
             <div class="form-group">
               <label>Request Bundling Code</label>
               <select name="id_request_bundling" class="form-control">
-                <?php $request = $this->db->get_where('request_bundling', ['id_location' => $this->uri->segment(4), 'id_client' => $this->uri->segment(5)])->result_array();
+                <?php $id1 = $this->uri->segment(4); ?>
+                <?php $id2 = $this->uri->segment(5); ?>
+                <?php $request = $this->db->query(" SELECT * FROM request_bundling JOIN client ON request_bundling.id_client = client.id_client WHERE client.id_location = $id1 AND request_bundling.id_client = $id2")->result_array();
                 foreach ($request as $row) : ?>
                   <option value="<?= $row['id_request_bundling'] ?>"><?= $row['request_bundling_code']; ?></option>
                 <?php endforeach; ?>
@@ -110,7 +120,8 @@
             <div class="form-group">
               <label>Request Bundling Code</label>
               <select name="id_request_bundling" class="form-control">
-                <?php $request = $this->db->get_where('request_bundling', ['id_location' => $this->uri->segment(4)])->result_array();
+                <?php $id1 = $this->uri->segment(4); ?>
+                <?php $request = $this->db->query(" SELECT * FROM request_bundling JOIN client ON request_bundling.id_client = client.id_client WHERE client.id_location = $id1")->result_array();
                 foreach ($request as $row) : ?>
                   <option value="<?= $row['id_request_bundling'] ?>"><?= $row['request_bundling_code']; ?></option>
                 <?php endforeach; ?>

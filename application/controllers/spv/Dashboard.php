@@ -14,22 +14,27 @@ class Dashboard extends CI_Controller
   public function index($id_client = null)
   {
     $id1 = $id_client;
+    $user        = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+    $id_location = $user['id_location'];
 
     if ($id1 != null) {
-      $item = $this->db->query("SELECT * FROM item_nonbundling WHERE id_client = $id1")->result_array();
+      $news_process = $this->db->query("SELECT * FROM news WHERE id_client = $id1 AND status = 0 ")->num_rows();
+      $news_finish = $this->db->query("SELECT * FROM news WHERE id_client = $id1 AND status = 1 ")->num_rows();
     } else {
-      $item = $this->db->get('item_nonbundling')->result_array();
+      $news_process = $this->db->query("SELECT * FROM news JOIN client ON news.id_client = client.id_client WHERE client.id_location = $id_location AND status = 0")->num_rows();
+      $news_finish = $this->db->query("SELECT * FROM news JOIN client ON news.id_client = client.id_client WHERE client.id_location = $id_location AND status = 1")->num_rows();
     }
 
     $data = [
       'judul'     => 'dashboard',
       'user'      => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-      'item'      => $item
+      'news_process'      => $news_process,
+      'news_finish'       => $news_finish
     ];
     $this->load->view('templates/header', $data);
     $this->load->view('templates/spv_sidebar');
     $this->load->view('templates/navbar');
-    $this->load->view('templates/index');
+    $this->load->view('spv/index');
     $this->load->view('templates/footer');
   }
 }

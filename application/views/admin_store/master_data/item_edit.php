@@ -229,13 +229,13 @@
                 </div>
                 <?php if (!empty($this->uri->segment(6))) { ?>
                 <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
+                  <?php $client = $this->db->get_where('client', ['id_location' => $this->uri->segment(4)])->result_array() ?>
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label>location *</label>
                       <?php foreach ($location as $row) : ?>
                         <?php if ($this->uri->segment(4) == $row['id_location']) { ?>
                           <input type="text" class="form-control" value="<?= $row['location_name']; ?>" readonly>
-                          <input type="hidden" class="form-control" name="id_location" value="<?= $row['id_location']; ?>" readonly>
                         <?php } ?>
                       <?php endforeach; ?>
                       </select>
@@ -255,20 +255,8 @@
                     </div>
                   </div>
                 <?php } else { ?>
+                  <?php $client = $this->db->get('client')->result_array() ?>
                   <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>location *</label>
-                      <select name="id_location" id="id_location" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
-                        <?php foreach ($location as $row) : ?>
-                          <?php if ($row['id_location'] == $item_nonbundling['id_location']) { ?>
-                            <option value="<?= $row['id_location'] ?>" selected><?= $row['location_name']; ?></option>
-                          <?php } else { ?>
-                            <option value="<?= $row['id_location'] ?>"><?= $row['location_name']; ?></option>
-                          <?php } ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
                     <div class="form-group col-md-6">
                       <label>client *</label>
                       <select name="id_client" id="id_client" class="form-control" required>

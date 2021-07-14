@@ -23,7 +23,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column text-uppercase" data-widget="treeview" role="menu" data-accordion="false">
         <!-- MEMFILTER DATA CLIENT DAN LOCATION -->
         <?php
-        $client = $this->db->get('client')->result_array();
+        $client = $this->db->get_where('client', ['id_location' => $this->session->userdata('id_location')])->result_array();
         $location = $this->db->get('location')->result_array() ?>
 
         <div class="form-group">

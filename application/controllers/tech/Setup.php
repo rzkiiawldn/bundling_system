@@ -312,6 +312,7 @@ class Setup extends CI_Controller
       'client'    => $this->client_model->get()->result_array(),
       'data_user' => $this->db->get_where('user', ['department_id' => '5'])->result_array(),
       'stock_allocation'  => $this->db->get('stock_allocation')->result_array(),
+      'location'  => $this->db->get('location')->result_array(),
       'select'    => ['Yes', 'No']
     ];
     $this->form_validation->set_rules('user_id', 'User', 'required|trim|is_unique[client.user_id]');
@@ -334,6 +335,7 @@ class Setup extends CI_Controller
         'id_stock_allocation' => $this->input->post('id_stock_allocation'),
         'created_date'        => date('Y-m-d'),
         'active'              => $this->input->post('active'),
+        'id_location'              => $this->input->post('id_location'),
       ];
       $this->client_model->add($data_client);
       $this->session->set_flashdata('message8', 'dataloc');
@@ -351,12 +353,14 @@ class Setup extends CI_Controller
       'client'    => $this->client_model->get($id_client)->row_array(),
       'data_user' => $this->db->get_where('user', ['department_id' => 5])->result_array(),
       'stock_allocation'  => $this->db->get('stock_allocation')->result_array(),
+      'location'  => $this->db->get('location')->result_array(),
       'select'    => ['Yes', 'No']
     ];
     $this->form_validation->set_rules('client_code', 'client Code', 'required|trim');
     $this->form_validation->set_rules('client_name', 'client name', 'required|trim');
     $this->form_validation->set_rules('user_id', 'user', 'required|trim');
     $this->form_validation->set_rules('id_stock_allocation', 'id stock allocation', 'required|trim');
+    $this->form_validation->set_rules('id_location', 'id location', 'required|trim');
 
     if ($this->form_validation->run() == false) {
       $this->load->view('templates/header', $data);
@@ -371,12 +375,14 @@ class Setup extends CI_Controller
       $client_name          = $this->input->post('client_name');
       $id_stock_allocation  = $this->input->post('id_stock_allocation');
       $active               = $this->input->post('active');
+      $id_location               = $this->input->post('id_location');
 
       $this->db->set('user_id', $user_id);
       $this->db->set('client_code', $client_code);
       $this->db->set('client_name', $client_name);
       $this->db->set('id_stock_allocation', $id_stock_allocation);
       $this->db->set('active', $active);
+      $this->db->set('id_location', $id_location);
       $this->db->where('id_client', $id_client);
       $this->client_model->edit();
 
@@ -397,7 +403,7 @@ class Setup extends CI_Controller
   {
     $data = [
 
-      'nama_menu' => 'setup',
+      'nama_menu'   => 'setup',
       'judul'       => 'status',
       'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'status'      => $this->db->get('status')->result_array()
@@ -649,5 +655,67 @@ class Setup extends CI_Controller
     $this->db->delete('stock_allocation');
     $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">stock_allocation Berhasil Didelete</div>');
     redirect('tech/setup/stock_allocation');
+  }
+
+  public function admin_ops()
+  {
+    $data = [
+      'judul'     => 'Admin Operation',
+      'user'      => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'admin'     => $this->db->query("SELECT * FROM user JOIN location ON user.id_location = location.id_location WHERE department_id = 4 AND user.id_location != ''")->result_array(),
+      'location'  => $this->db->get('location')->result_array()
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/tech_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('tech/setup/admin_ops');
+    $this->load->view('templates/footer');
+  }
+
+  public function add_admin()
+  {
+    $this->db->set('id_location', $this->input->post('id_location'));
+    $this->db->where('id_user', $this->input->post('id_user'));
+    $this->db->update('user');
+    redirect('tech/setup/admin_ops');
+  }
+
+  public function edit_admin()
+  {
+    $this->db->set('id_location', $this->input->post('id_location'));
+    $this->db->where('id_user', $this->input->post('id_user'));
+    $this->db->update('user');
+    redirect('tech/setup/admin_ops');
+  }
+
+  public function spv()
+  {
+    $data = [
+      'judul'     => 'Supervisior',
+      'user'      => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'spv'       => $this->db->query("SELECT * FROM user JOIN location ON user.id_location = location.id_location WHERE department_id = 6 AND user.id_location != ''")->result_array(),
+      'location'  => $this->db->get('location')->result_array()
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/tech_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('tech/setup/spv');
+    $this->load->view('templates/footer');
+  }
+
+  public function add_spv()
+  {
+    $this->db->set('id_location', $this->input->post('id_location'));
+    $this->db->where('id_user', $this->input->post('id_user'));
+    $this->db->update('user');
+    redirect('tech/setup/spv');
+  }
+
+  public function edit_spv()
+  {
+    $this->db->set('id_location', $this->input->post('id_location'));
+    $this->db->where('id_user', $this->input->post('id_user'));
+    $this->db->update('user');
+    redirect('tech/setup/spv');
   }
 }

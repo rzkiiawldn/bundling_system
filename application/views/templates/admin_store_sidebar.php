@@ -3,7 +3,7 @@
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
     <img src="<?= base_url('assets/adminlte/'); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">EOSystem</span>
+    <span class="brand-text font-weight-light">Bundling System</span>
   </a>
 
   <!-- Sidebar -->
@@ -23,54 +23,37 @@
       <ul class="nav nav-pills nav-sidebar flex-column text-uppercase" data-widget="treeview" role="menu" data-accordion="false">
         <!-- MEMFILTER DATA CLIENT DAN LOCATION -->
         <?php
-        $client = $this->db->get('client')->result_array();
         $location = $this->db->get('location')->result_array() ?>
-        <?php if ($this->session->userdata('department_id') == 1 or $this->session->userdata('department_id') == 2 or $this->session->userdata('department_id') == 3) : ?>
 
-          <!-- ADMIN STORE DAN TECH MEMFILTER CLIENT DAN LOCATION -->
-          <div class="form-group">
-            <select class="form-control select2bs4" onchange="location = this.options[this.selectedIndex].value;">
-              <option value="" selected disabled>--location--</option>
-              <?php if (!empty($this->uri->segment(5))) { ?>
-                <?php foreach ($location as $row) : ?>
-                  <?php if ($row['id_location'] == $this->uri->segment(4)) { ?>
-                    <option value="<?= base_url('admin_store/dashboard/index/' . $row['id_location'] . '/' . $this->uri->segment(5)) ?>" selected><?= $row['location_name']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?= base_url('admin_store/dashboard/index/' . $row['id_location'] . '/' . $this->uri->segment(5)) ?>"><?= $row['location_name']; ?></option>
-                  <?php } ?>
-                <?php endforeach; ?>
+        <!-- ADMIN STORE DAN TECH MEMFILTER CLIENT DAN LOCATION -->
+        <div class="form-group">
+          <select class="form-control select2bs4" onchange="location = this.options[this.selectedIndex].value;">
+            <option value="" selected disabled>--location--</option>
+            <?php foreach ($location as $row) : ?>
+              <?php if ($row['id_location'] == $this->uri->segment(4)) { ?>
+                <option value="<?= base_url('admin_store/dashboard/index/' . $row['id_location']) ?>" selected><?= $row['location_name']; ?></option>
               <?php } else { ?>
-                <?php foreach ($location as $row) : ?>
-                  <?php if ($row['id_location'] == $this->uri->segment(4)) { ?>
-                    <option value="<?= base_url('admin_store/dashboard/index/' . $row['id_location']) ?>" selected><?= $row['location_name']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?= base_url('admin_store/dashboard/index/' . $row['id_location']) ?>"><?= $row['location_name']; ?></option>
-                  <?php } ?>
-                <?php endforeach; ?>
+                <option value="<?= base_url('admin_store/dashboard/index/' . $row['id_location']) ?>"><?= $row['location_name']; ?></option>
               <?php } ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <select class="form-control select2bs4" onchange="location = this.options[this.selectedIndex].value;">
-              <option value="" selected disabled>--client--</option>
-              <?php if (empty($this->uri->segment(4))) { ?>
-              <?php } else { ?>
-                <?php $uri4 = $this->db->get_where('location', ['id_location' => $this->uri->segment(4)])->row() ?>
-                <!-- JIKA ADA MAKA LAKUKAN INI -->
-                <?php if (!empty($uri4)) { ?>
-                  <?php foreach ($client as $row) : ?>
-                    <?php if ($row['id_client'] == $this->uri->segment(5)) { ?>
-                      <option value="<?= base_url('admin_store/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>" selected><?= $row['client_name']; ?></option>
-                    <?php } else { ?>
-                      <option value="<?= base_url('admin_store/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>"><?= $row['client_name']; ?></option>
-                    <?php } ?>
-                  <?php endforeach; ?>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control select2bs4" onchange="location = this.options[this.selectedIndex].value;">
+            <option value="" selected disabled>--client--</option>
+            <?php if (!empty($this->uri->segment(4))) { ?>
+              <?php $client = $this->db->get_where('client', ['id_location' => $this->uri->segment(4)])->result_array() ?>
+              <!-- JIKA ADA MAKA LAKUKAN INI -->
+              <?php foreach ($client as $row) : ?>
+                <?php if ($row['id_client'] == $this->uri->segment(5)) { ?>
+                  <option value="<?= base_url('admin_store/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>" selected><?= $row['client_name']; ?></option>
                 <?php } else { ?>
+                  <option value="<?= base_url('admin_store/dashboard/index/' . $this->uri->segment(4) . '/' . $row['id_client']) ?>"><?= $row['client_name']; ?></option>
                 <?php } ?>
-              <?php } ?>
-            </select>
-          </div>
-        <?php endif; ?>
+              <?php endforeach; ?>
+            <?php } ?>
+          </select>
+        </div>
         <!-- ============== MENAMPILKAN CLIENT & LOCATION =========================== -->
 
 

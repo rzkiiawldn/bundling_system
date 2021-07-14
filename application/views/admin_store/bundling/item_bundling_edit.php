@@ -4,9 +4,9 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(6))) { ?>
-            <a href="<?= base_url('admin_store/bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
           <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_store/bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
           <?php } else { ?>
             <a href="<?= base_url('admin_store/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
           <?php } ?>
@@ -61,12 +61,13 @@
                   </div>
                   <?php if (!empty($this->uri->segment(6))) { ?>
                   <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
+
+                    <?php $client = $this->db->get_where('client', ['id_location' => $this->uri->segment(4)])->result_array(); ?>
                     <div class="form-group col-md-6">
                       <label>location *</label>
                       <?php foreach ($location as $row) : ?>
                         <?php if ($this->uri->segment(4) == $row['id_location']) { ?>
                           <input type="text" class="form-control" value="<?= $row['location_name']; ?>" readonly>
-                          <input type="hidden" class="form-control" name="id_location" value="<?= $row['id_location']; ?>" readonly>
                         <?php } ?>
                       <?php endforeach; ?>
                       </select>
@@ -85,19 +86,8 @@
                       </select>
                     </div>
                   <?php } else { ?>
-                    <div class="form-group col-md-6">
-                      <label>location *</label>
-                      <select name="id_location" id="id_location" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
-                        <?php foreach ($location as $row) : ?>
-                          <?php if ($row['id_location'] == $item_bundling['id_location']) { ?>
-                            <option value="<?= $row['id_location'] ?>" selected><?= $row['location_name']; ?></option>
-                          <?php } else { ?>
-                            <option value="<?= $row['id_location'] ?>"><?= $row['location_name']; ?></option>
-                          <?php } ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
+
+                    <?php $client = $this->db->get('client')->result_array(); ?>
                     <div class="form-group col-md-6">
                       <label>client *</label>
                       <select name="id_client" id="id_client" class="form-control" required>

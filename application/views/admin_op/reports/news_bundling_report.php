@@ -45,7 +45,7 @@
                     <th>Pihak 2</th>
                     <th>Barang</th>
                     <th>Status</th>
-                    <th width="15%">ACTION</th>
+                    <th width="20%">ACTION</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -63,20 +63,24 @@
                         <?php } else { ?>
                           <span class="badge badge-sm badge-success">Diterima</span>
                         <?php } ?>
-                        <?php if ($user['department_id'] == 1 || $user['department_id'] == 2 || $user['department_id'] == 4) { ?>
                       <td>
                         <?php if (!empty($this->uri->segment(4))) { ?>
-                          <a href="<?= base_url('admin_op/reports/news_bundling_report/detail_news/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="<?= base_url('admin_op/reports/news_bundling_report/edit_news/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
-                          <a href="<?= base_url('admin_op/reports/news_bundling_report/delete_news/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
+                          <?php if ($row['status'] == 1) { ?>
+                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                          <?php } ?>
+                          <a href="<?= base_url('admin_op/reports/nb_detaill/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                          <a href="<?= base_url('admin_op/reports/nb_editt/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
+                          <a href="<?= base_url('admin_op/reports/nb_deletee/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } else { ?>
-                          <a href="<?= base_url('admin_op/reports/news_bundling_report/detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="<?= base_url('admin_op/reports/news_bundling_report/edit/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
-                          <a href="<?= base_url('admin_op/reports/news_bundling_report/delete/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
+                          <?php if ($row['status'] == 1) { ?>
+                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                          <?php } ?>
+                          <a href="<?= base_url('admin_op/reports/nb_detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                          <a href="<?= base_url('admin_op/reports/nb_edit/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
+                          <a href="<?= base_url('admin_op/reports/nb_delete/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } ?>
 
                       </td>
-                    <?php } ?>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>

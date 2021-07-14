@@ -13,11 +13,12 @@ class Reports extends CI_Controller
   public function news_bundling_report($id_client = null)
   {
     $id1 =  $id_client;
+    $id_location = $this->session->userdata('id_location');
 
     if ($id1 != null) {
-      $item = $this->db->query("SELECT * FROM news WHERE id_client = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM news AS inb JOIN client ON inb.id_client = client.id_client WHERE inb.id_client = $id1 AND client.id_location = $id_location")->result_array();
     } else {
-      $item = $this->db->query("SELECT * FROM news")->result_array();
+      $item = $this->db->query("SELECT * FROM news AS inb JOIN client ON inb.id_client = client.id_client WHERE client.id_location = $id_location")->result_array();
     }
     $data = [
       'judul'     => 'News Bundling Report',
@@ -84,6 +85,20 @@ class Reports extends CI_Controller
       } else {
         redirect('reports/news_bundling_report');
       }
+    }
+  }
+
+  public function edit_status()
+  {
+    $id = $this->input->post('id');
+    $this->db->set('status', $this->input->post('status'));
+    $this->db->where('id_news', $this->input->post('id_news'));
+    $this->db->update('news');
+
+    if ($id != null) {
+      redirect('spv/reports/news_bundling_report/' . $id);
+    } else {
+      redirect('spv/reports/news_bundling_report');
     }
   }
 }

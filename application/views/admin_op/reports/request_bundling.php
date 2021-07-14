@@ -56,13 +56,21 @@
                       <td><?= $row['item_bundling_name']; ?></td>
                       <td><?= $row['request_quantity']; ?></td>
                       <td><?= $row['packing_type']; ?></td>
-                      <td><?= $row['status']; ?></td>
+                      <td>
+                        <?php if ($row['status'] == 'process' || $row['status'] == 'request') { ?>
+                          <span class="badge badge-warning"><?= $row['status']; ?></span>
+                        <?php } elseif ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
+                          <span class="badge badge-success"><?= $row['status']; ?></span>
+                        <?php } else { ?>
+                          <span class="badge badge-danger"><?= $row['status']; ?></span>
+                        <?php }  ?>
+                      </td>
                       <td class="text-center">
                         <?php if (!empty($this->uri->segment(4))) { ?>
-                          <a href="<?= base_url('admin_op/reports/rb_detaill/' . $this->uri->segment(4) . '/' .  $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
+                          <a href="<?= base_url('report/request_bundling/' .  $row['id_request_bundling']); ?>" target="_blank" class="btn btn-sm btn-default" title="print"><i class="fas fa-print"></i></a>
                           <a href="<?= base_url('admin_op/reports/rb_detaill/' . $this->uri->segment(4) . '/' .  $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                         <?php } else { ?>
-                          <a href="<?= base_url('admin_op/reports/rb_detail/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
+                          <a href="<?= base_url('report/request_bundling/' . $row['id_request_bundling']); ?>" target="_blank" class="btn btn-sm btn-default" title="print"><i class="fas fa-print"></i></a>
                           <a href="<?= base_url('admin_op/reports/rb_detail/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                         <?php } ?>
                       </td>
@@ -93,7 +101,8 @@
             <div class="form-group">
               <label>Request Bundling Code</label>
               <select name="id_request_bundling" class="form-control">
-                <?php $request = $this->db->get('request_bundling')->result_array();
+                <?php $id_location = $this->session->userdata('id_location'); ?>
+                <?php $request = $this->db->query(" SELECT * FROM request_bundling JOIN client ON request_bundling.id_client = client.id_client WHERE client.id_location = $id_location")->result_array();
                 foreach ($request as $row) : ?>
                   <option value="<?= $row['id_request_bundling'] ?>"><?= $row['request_bundling_code']; ?></option>
                 <?php endforeach; ?>
@@ -103,10 +112,10 @@
             <div class="form-group">
               <?php if (!empty($this->uri->segment(4))) { ?>
                 <input type="hidden" name="id1" value="<?= $this->uri->segment(4) ?>">
-                <input type="hidden" name="id2" value="<?= $this->uri->segment(5) ?>">
               <?php } ?>
               <label>Request Bundling Code</label>
               <select name="id_request_bundling" class="form-control">
+                <option value="" selected disabled>-- select --</option>
                 <?php $request = $this->db->get_where('request_bundling', ['id_client' => $this->uri->segment(4)])->result_array();
 
                 foreach ($request as $row) : ?>

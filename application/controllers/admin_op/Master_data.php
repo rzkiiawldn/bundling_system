@@ -13,11 +13,12 @@ class Master_data extends CI_Controller
   public function item($id_client = null)
   {
     $id1 =  $id_client;
+    $id_location = $this->session->userdata('id_location');
 
     if ($id1 != null) {
-      $item = $this->db->query("SELECT * FROM item_nonbundling WHERE id_client = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM item_nonbundling AS inb JOIN client ON inb.id_client = client.id_client WHERE inb.id_client = $id1 AND client.id_location = $id_location")->result_array();
     } else {
-      $item = $this->db->get('item_nonbundling')->result_array();
+      $item = $this->db->query("SELECT * FROM item_nonbundling AS inb JOIN client ON inb.id_client = client.id_client WHERE client.id_location = $id_location")->result_array();
     }
 
     $data = [

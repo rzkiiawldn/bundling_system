@@ -79,10 +79,25 @@
                 <div class="col-md-6 pt-0 mt-0">
                   <div class="form-group">
                     <label class="pt-0 mt-0">Status</label>
-                    <p class="mb-0 pb-0"><?= $request_bundling['status']; ?></p>
+                    <?php if ($request_bundling['status'] == 'request' || $request_bundling['status'] == 'process') { ?>
+                      <p><span class="badge badge-warning"><?= $request_bundling['status']; ?></span></p>
+                    <?php } elseif ($request_bundling['status'] == 'finish' || $request_bundling['status'] == 'success') { ?>
+                      <p><span class="badge badge-success"><?= $request_bundling['status']; ?></span></p>
+                    <?php } else { ?>
+                      <p><span class="badge badge-danger"><?= $request_bundling['status']; ?></span></p>
+                    <?php }  ?>
                     <hr class="mt-0 pt-0">
                   </div>
                 </div>
+                <?php if ($request_bundling['status'] == 'finish' || $request_bundling['status'] == 'success') { ?>
+                  <div class="col-md-6 pt-0 mt-0">
+                    <div class="form-group">
+                      <label class="pt-0 mt-0">Photo</label>
+                      <p class="mb-0 pb-0"><?= $request_bundling['photo']; ?></p>
+                      <hr class="mt-0 pt-0">
+                    </div>
+                  </div>
+                <?php } ?>
               </div>
               <?php if (!empty($this->uri->segment(5))) { ?>
                 <a href="<?= base_url('admin_op/bundling/request_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info float-right">Back</a>

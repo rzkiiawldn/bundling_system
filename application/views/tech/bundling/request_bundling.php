@@ -47,7 +47,7 @@
                     <th>Qty</th>
                     <th>PACKING TYPE</th>
                     <th>STATUS</th>
-                    <th width="15%">ACTION</th>
+                    <th width="22%">ACTION</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,17 +60,46 @@
                       <td><?= $row['item_bundling_name']; ?></td>
                       <td><?= $row['request_quantity']; ?></td>
                       <td><?= $row['packing_type']; ?></td>
-                      <td><?= $row['status']; ?></td>
+                      <td>
+                        <?php if ($row['status'] == 'process' || $row['status'] == 'request') { ?>
+                          <span class="badge badge-warning"><?= $row['status']; ?></span>
+                        <?php } elseif ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
+                          <span class="badge badge-success"><?= $row['status']; ?></span>
+                        <?php } else { ?>
+                          <span class="badge badge-danger"><?= $row['status']; ?></span>
+                        <?php }  ?>
+                      </td>
                       <td>
                         <?php if (!empty($this->uri->segment(5))) { ?>
+                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
+                            <?php if ($row['photo'] == '') { ?>
+                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                            <?php } else { ?>
+                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                            <?php } ?>
+                          <?php } ?>
                           <a href="<?= base_url('tech/bundling/rb_detailll/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_edittt/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_deleteee/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_request_bundling']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
+                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
+                            <?php if ($row['photo'] == '') { ?>
+                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                            <?php } else { ?>
+                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                            <?php } ?>
+                          <?php } ?>
                           <a href="<?= base_url('tech/bundling/rb_detaill/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_editt/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_deletee/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } else { ?>
+                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
+                            <?php if ($row['photo'] == '') { ?>
+                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                            <?php } else { ?>
+                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                            <?php } ?>
+                          <?php } ?>
                           <a href="<?= base_url('tech/bundling/rb_detail/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_edit/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_delete/' . $row['id_request_bundling']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
@@ -87,3 +116,73 @@
     </div>
   </section>
 </div>
+
+
+<?php foreach ($request_bundling as $row) { ?>
+  <div class="modal fade" id="uploadBukti<?= $row['id_request_bundling'] ?>" tabindex="-1" role="dialog" aria-labelledby="uploadBuktiLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadBuktiLabel">Upload </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?= base_url('admin_op/bundling/upload_photo/' . $row['id_request_bundling']) ?>" method="post" enctype="multipart/form-data">
+          <div class=" modal-body">
+            <div class="form-group">
+              <label for="photo">Upload Photo</label>
+              <input type="hidden" name="id_request_bundling" value="<?= $row['id_request_bundling'] ?>">
+              <input type="file" class="form-control" required name="photo" id="photo">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" name="upload">Upload</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+
+<!-- LIHAT BUKTI -->
+<?php foreach ($request_bundling as $row) { ?>
+  <div class="modal fade" id="lihatBukti<?= $row['id_request_bundling'] ?>" tabindex="-1" role="dialog" aria-labelledby="lihatBuktiLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="lihatBuktiLabel">Photo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?= base_url('admin_op/bundling/upload_photo/' . $row['id_request_bundling']) ?>" method="post" enctype="multipart/form-data">
+          <div class=" modal-body">
+            <div class="form-group">
+              <img src="<?= base_url('assets/img/photo/' . $row['photo']) ?>" class="img img-fluid" alt="">
+            </div>
+            <p>
+              <button class="btn btn-success btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Edit Photo
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                <div class="form-group">
+                  <label for="photo">Edit Photo</label>
+                  <input type="hidden" name="id_request_bundling" value="<?= $row['id_request_bundling'] ?>">
+                  <input type="file" class="form-control" required name="photo" id="photo">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php } ?>

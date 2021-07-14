@@ -58,7 +58,7 @@
                   <div class="form-group col-md-6">
                     <label>Manage By *</label>
                     <select name="manage_by" id="manage_by" class="form-control">
-                      <option value="" disabled selected>-- pilih --</option>
+                      <option value="" disabled selected>-- manage by --</option>
                       <?php foreach ($manage_by as $manage) { ?>
                         <option value="<?= $manage ?>"><?= $manage; ?></option>
                       <?php } ?>
@@ -108,7 +108,7 @@
                   <div class="form-group col-md-6">
                     <label>addtional expired *</label>
                     <div class="input-group mb-3">
-                      <input type="number" min="1" class="form-control" placeholder="0" name="additional_expired" aria-describedby="basic-addon1" value="<?= set_value('additional_expired'); ?>">
+                      <input type="number" min="1" class="form-control" name="additional_expired" aria-describedby="basic-addon1" value="<?= set_value('additional_expired'); ?>">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">days</span>
                       </div>
@@ -118,6 +118,7 @@
                   <div class="form-group col-md-6">
                     <label>size *</label>
                     <select name="size" id="size" class="form-control">
+                      <option value="" selected disabled>-- size --</option>
                       <?php foreach ($size as $row) : ?>
                         <option value="<?= $row ?>"><?= $row; ?></option>
                       <?php endforeach; ?>
@@ -176,9 +177,9 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label>is_fragile *</label>
+                    <label>is fragile *</label>
                     <select name="is_fragile" id="is_fragile" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- is fragile --</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -187,16 +188,16 @@
                   <div class="form-group col-md-4">
                     <label>active *</label>
                     <select name="active" id="active" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- active --</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
                     <?= form_error('active', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>cool_storage *</label>
+                    <label>cool storage *</label>
                     <select name="cool_storage" id="cool_storage" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- cool storage --</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -205,15 +206,14 @@
                 </div>
                 <?php if (!empty($this->uri->segment(5))) { ?>
                   <input type="hidden" name="id_client" value="<?= $id_client ?>">
-                  <input type="hidden" name="id_location" value="<?= $id_location ?>">
                 <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
+                  <?php $client = $this->db->get_where('client', ['id_location' => $this->uri->segment(4)])->result_array() ?>
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label>location *</label>
                       <?php foreach ($location as $row) : ?>
                         <?php if ($this->uri->segment(4) == $row['id_location']) { ?>
                           <input type="text" class="form-control" value="<?= $row['location_name']; ?>" readonly>
-                          <input type="hidden" class="form-control" name="id_location" value="<?= $row['id_location']; ?>" readonly>
                         <?php } ?>
                       <?php endforeach; ?>
                       </select>
@@ -229,16 +229,8 @@
                     </div>
                   </div>
                 <?php } else { ?>
+                  <?php $client = $this->db->get('client')->result_array() ?>
                   <div class="row">
-                    <div class="form-group col-md-6">
-                      <label>location *</label>
-                      <select name="id_location" id="id_location" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
-                        <?php foreach ($location as $row) : ?>
-                          <option value="<?= $row['id_location'] ?>"><?= $row['location_name']; ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
                     <div class="form-group col-md-6">
                       <label>client *</label>
                       <select name="id_client" id="id_client" class="form-control" required>

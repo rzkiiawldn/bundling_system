@@ -16,9 +16,9 @@ class Master_data extends CI_Controller
     $id2 = $id_client;
 
     if ($id1 != null and empty($id2)) {
-      $item = $this->db->query("SELECT * FROM item_nonbundling WHERE id_location = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM item_nonbundling AS inb JOIN client ON inb.id_client = client.id_client WHERE client.id_location = $id1")->result_array();
     } elseif ($id2 != null) {
-      $item = $this->db->query("SELECT * FROM item_nonbundling WHERE id_client = $id2 AND id_location = $id1")->result_array();
+      $item = $this->db->query("SELECT * FROM item_nonbundling AS inb JOIN client ON inb.id_client = client.id_client WHERE inb.id_client = $id2 AND client.id_location = $id1")->result_array();
     } else {
       $item = $this->db->get('item_nonbundling')->result_array();
     }
@@ -27,8 +27,6 @@ class Master_data extends CI_Controller
       'judul'             => 'Item',
       'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'manage_by'         => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
-      'client'            => $this->db->get('client')->result_array(),
-      'location'          => $this->db->get('location')->result_array(),
       'item_nonbundling'  => $item
     ];
     $this->load->view('templates/header', $data);
@@ -100,7 +98,6 @@ class Master_data extends CI_Controller
       'manage_by'   => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
       'id_location' => $id1,
       'id_client'   => $id2,
-      'client'      => $this->db->get('client')->result_array(),
       'location'    => $this->db->get('location')->result_array(),
       'select'      => ['Yes', 'No'],
       'size'        => ['S', 'M', 'L', 'XL', 'XXL'],
@@ -155,7 +152,6 @@ class Master_data extends CI_Controller
         'active'                      => htmlspecialchars($this->input->post('active')),
         'cool_storage'                => htmlspecialchars($this->input->post('cool_storage')),
         'id_client'                   => htmlspecialchars($this->input->post('id_client')),
-        'id_location'                 => htmlspecialchars($this->input->post('id_location')),
         'created_date'                => date('Y-m-d'),
         'created_by'                  => $this->session->userdata('fullname'),
       ];
@@ -178,7 +174,6 @@ class Master_data extends CI_Controller
   {
     $data = [
       'judul'             => 'Edit Item',
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'manage_by'         => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
@@ -235,7 +230,6 @@ class Master_data extends CI_Controller
       $is_fragile                     = htmlspecialchars($this->input->post('is_fragile'));
       $active                         = htmlspecialchars($this->input->post('active'));
       $cool_storage                   = htmlspecialchars($this->input->post('cool_storage'));
-      $id_location                    = htmlspecialchars($this->input->post('id_location'));
       $id_client                      = htmlspecialchars($this->input->post('id_client'));
 
       $this->db->set('item_nonbundling_code', $item_nonbundling_code);
@@ -258,7 +252,6 @@ class Master_data extends CI_Controller
       $this->db->set('is_fragile', $is_fragile);
       $this->db->set('active', $active);
       $this->db->set('cool_storage', $cool_storage);
-      $this->db->set('id_location', $id_location);
       $this->db->set('id_client', $id_client);
       $this->db->where('id_item_nonbundling', $id_item_nonbundling);
       $this->db->update('item_nonbundling');
@@ -365,7 +358,6 @@ class Master_data extends CI_Controller
     $id1 = $id_location;
     $data = [
       'judul'             => 'Edit Item',
-      'client'            => $this->db->get('client')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'manage_by'         => ['Batch Inbound', 'Expired Date', 'Serial Number', 'Production Date'],
@@ -423,7 +415,6 @@ class Master_data extends CI_Controller
       $is_fragile                     = htmlspecialchars($this->input->post('is_fragile'));
       $active                         = htmlspecialchars($this->input->post('active'));
       $cool_storage                   = htmlspecialchars($this->input->post('cool_storage'));
-      $id_location                    = htmlspecialchars($this->input->post('id_location'));
       $id_client                      = htmlspecialchars($this->input->post('id_client'));
 
       $this->db->set('item_nonbundling_code', $item_nonbundling_code);
@@ -446,7 +437,6 @@ class Master_data extends CI_Controller
       $this->db->set('is_fragile', $is_fragile);
       $this->db->set('active', $active);
       $this->db->set('cool_storage', $cool_storage);
-      $this->db->set('id_location', $id_location);
       $this->db->set('id_client', $id_client);
       $this->db->where('id_item_nonbundling', $id_item_nonbundling);
       $this->db->update('item_nonbundling');

@@ -60,6 +60,16 @@
                     <?= form_error('id_stock_allocation', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
+                    <label>Location *</label>
+                    <select name="id_location" class="form-control select2bs4" required style="width: 100%;">
+                      <option value="" selected disabled></option>
+                      <?php foreach ($location as $loc) : ?>
+                        <option value="<?= $loc['id_location'] ?>"><?= $loc['location_name']; ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                    <?= form_error('id_location', '<small class="text-danger pl-2">', '</small>'); ?>
+                  </div>
+                  <div class="form-group col-md-6">
                     <label for="">Active</label>
                     <select name="active" id="active" class="form-control">
                       <?php foreach ($select as $row) : ?>
