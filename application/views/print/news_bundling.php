@@ -38,31 +38,31 @@ body {
       </tr>
       <tr>
         <td>
-          <p>Pada hari ini, bertempat di Haistar, kami yang bertanda tangan dibawah ini :</p>
+          <p>Pada hari ini <?= $news['tanggal']; ?>, bertempat di Haistar, kami yang bertanda tangan dibawah ini :</p>
           <table>
             <tr>
               <td width="50px">1.</td>
               <td width="80px">Nama</td>
               <td>:</td>
-              <td>Siapa</td>
+              <td><?= $news['nama_pihak2']; ?></td>
             </tr>
             <tr>
               <td></td>
               <td width="80px">Posisi</td>
               <td>:</td>
-              <td>Siapa</td>
+              <td><?= $news['posisi_pihak2']; ?></td>
             </tr>
             <tr>
               <td></td>
               <td width="80px">Dept</td>
               <td>:</td>
-              <td>Siapa</td>
+              <td><?= $news['dept_pihak2']; ?></td>
             </tr>
             <tr>
               <td></td>
               <td width="80px">Plat Code</td>
               <td>:</td>
-              <td>Siapa</td>
+              <td><?= $news['plat_code']; ?></td>
             </tr>
           </table>
         </td>
@@ -75,19 +75,19 @@ body {
               <td width="50px">2.</td>
               <td width="80px">Nama</td>
               <td>:</td>
-              <td>Siapa</td>
+              <td><?= $news['nama_pihak1']; ?></td>
             </tr>
             <tr>
               <td></td>
               <td width="80px">Posisi</td>
               <td>:</td>
-              <td>Siapa</td>
+              <td><?= $news['posisi_pihak1']; ?></td>
             </tr>
             <tr>
               <td></td>
               <td width="80px">Dept</td>
               <td>:</td>
-              <td>Siapa</td>
+              <td><?= $news['dept_pihak1']; ?></td>
             </tr>
           </table>
         </td>
@@ -111,14 +111,19 @@ body {
             <th>UoM</th>
             <th>Remaks</th>
           </tr>
+            <?php $news_detail = $this->db->get_where('request_bundling', ['id_request_bundling' => $news['id_barang']])->row_array() ?>
+                    <?php $id_item = $news_detail['id_item_bundling']; ?>
+                    <?php $bundling_detail = $this->db->query(" SELECT * FROM item_bundling_detail AS ibd JOIN item_bundling AS ib ON ibd.id_item_bundling = ib.id_item_bundling JOIN client ON ib.id_client = client.id_client WHERE ibd.id_item_bundling = $id_item ")->result_array() ?>
+                    <?php $no = 1;
+                    foreach ($bundling_detail as $row) : ?>
           <tr>
-            <?php $no=1; ?>
             <td><?= $no++; ?></td>
-            <td><?= $no++; ?></td>
-            <td><?= $no++; ?></td>
-            <td><?= $no++; ?></td>
-            <td><?= $no++; ?></td>
+            <td><?= $row['client_name']; ?></td>
+            <td><?= $row['item_qty']; ?></td>
+            <td>Pcs</td>
+            <td>DI TERIMA SECARA PCS</td>
           </tr>
+        <?php endforeach ?>
         </table>
         </td>
       </tr>

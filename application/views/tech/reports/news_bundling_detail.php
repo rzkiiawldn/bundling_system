@@ -3,23 +3,16 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-6">
-          <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_op/reports/news_bundling_report/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+          <?php if (!empty($this->uri->segment(6))) { ?>
+            <a href="<?= base_url('tech/reports/news_bundling_report/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+          <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
+            <a href="<?= base_url('tech/reports/news_bundling_report/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_op/reports/news_bundling_report'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('tech/reports/news_bundling_report'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
           <?php } ?>
         </div>
         <div class="col-6">
-          <ol class="breadcrumb float-sm-right">
-            <?php if (!empty($this->uri->segment(5))) { ?>
-              <li class="breadcrumb-item"><a href="<?= base_url('admin_op/dashboard/index/' . $this->uri->segment(4)); ?>">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?= base_url('admin_op/reports/news_bundling_report/' . $this->uri->segment(4)); ?>">List</a></li>
-            <?php } else { ?>
-              <li class="breadcrumb-item"><a href="<?= base_url('admin_op/dashboard'); ?>">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?= base_url('admin_op/dashboard'); ?>">List</a></li>
-            <?php } ?>
-            <li class="breadcrumb-item active"><?= $judul; ?></li>
-          </ol>
+
         </div>
       </div>
     </div>

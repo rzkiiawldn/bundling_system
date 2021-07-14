@@ -83,7 +83,9 @@
                   <div class="col-md-6 pt-0 mt-0">
                     <div class="form-group">
                       <label class="pt-0 mt-0">Photo</label>
-                      <p class="mb-0 pb-0"><?= $request_bundling['photo']; ?></p>
+                      <p class="mb-0 pb-0">
+                        <img src="<?= base_url('assets/img/photo/' . $request_bundling['photo']) ?>" alt="" width="200px">
+                      </p>
                       <hr class="mt-0 pt-0">
                     </div>
                   </div>

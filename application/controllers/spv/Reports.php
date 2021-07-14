@@ -101,4 +101,34 @@ class Reports extends CI_Controller
       redirect('spv/reports/news_bundling_report');
     }
   }
+
+  public function nb_detail($id)
+  {
+    $data = [
+      'judul'       => 'News Bundling Report Detail',
+      'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/reports/news_bundling_detail');
+    $this->load->view('templates/footer');
+  }
+
+  public function nb_detail_news($id_client = null, $id)
+  {
+    $id1 =  $id_client;
+    $data = [
+      'judul'       => 'News Bundling Report Detail',
+      'id_client' => $id1,
+      'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/reports/news_bundling_detail');
+    $this->load->view('templates/footer');
+  }
 }

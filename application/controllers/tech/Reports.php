@@ -400,4 +400,52 @@ class Reports extends CI_Controller
 
     redirect('tech/reports/news_bundling_report/' . $this->uri->segment(4) . '/' . $this->uri->segment(5));
   }
+
+  public function nb_detail($id)
+  {
+    $data = [
+      'judul'       => 'News Bundling Report Detail',
+      'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/tech_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('tech/reports/news_bundling_detail');
+    $this->load->view('templates/footer');
+  }
+
+  public function nb_detaill($id_client = null, $id)
+  {
+    $id1 =  $id_client;
+    $data = [
+      'judul'       => 'News Bundling Report Detail',
+      'id_client' => $id1,
+      'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/tech_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('tech/reports/news_bundling_detail');
+    $this->load->view('templates/footer');
+  }
+
+  public function nb_detailll($id_location = null, $id_client = null, $id)
+  {
+    $id2 =  $id_client;
+    $id1 =  $id_location;
+    $data = [
+      'judul'       => 'News Bundling Report Detail',
+      'id_client' => $id2,
+      'id_location' => $id1,
+      'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/tech_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('tech/reports/news_bundling_detail');
+    $this->load->view('templates/footer');
+  }
 }
