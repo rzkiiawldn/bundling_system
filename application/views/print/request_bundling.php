@@ -34,8 +34,8 @@
 
     <table width="100%" style="text-align: left;margin-top: 5px;" border="1">
       <tr style="margin-bottom: 5">
-        <td><b>Produk</b></td>
         <td><b>Code</b></td>
+        <td><b>Produk</b></td>
         <td><b>Marketplace</b></td>
         <td><b>Quantity</b></td>
         <td><b>Weight</b></td>
@@ -45,59 +45,43 @@
 	    <?php $bundling_detail = $this->db->query(" SELECT * FROM item_bundling_detail AS ibd JOIN item_bundling AS ib ON ibd.id_item_bundling = ib.id_item_bundling JOIN item_nonbundling AS inb ON ibd.id_item_nonbundling = inb.id_item_nonbundling WHERE ibd.id_item_bundling = $item ")->result_array() ?>
 	    <?php foreach ($bundling as $row) : ?>
       <tr>
-        <td>
-          <?= $row['item_bundling_name']; ?> <br> detail : <br>
-          <ul>
-            <?php foreach ($bundling_detail as $bd) : ?>
-              <li>
-                <?= $bd['item_nonbundling_name']; ?>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        </td>
-        <td>
+                        <td>
+                          <?= $request_bundling['request_bundling_code']; ?>
+                        </td>
+                        <td>
+                          <?= $row['item_bundling_name']; ?> <br> detail : <br>
+                          <ul>
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                <?= $bd['item_nonbundling_name']; ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
+                        <td>
+                          <?= $request_bundling['stock_allocation_name']; ?>
+                        </td>
 
-	      <ul style="margin-top: 45px;list-style-type: none;">
-	        <?php foreach ($bundling_detail as $bd) : ?>
-	          <li>
-	            <?= $bd['item_nonbundling_code']; ?>
-	          </li>
-	        <?php endforeach; ?>
-	      </ul>
-	    </td>
+                        <td>
+                          <ul style="margin-top: 45px;list-style-type: none;">
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                <?= $bd['item_qty']; ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
 
-	    <td>
-
-	      <ul style="margin-top: 45px;list-style-type: none;">
-	        <?php foreach ($bundling_detail as $bd) : ?>
-	          <li>
-	            ?
-	          </li>
-	        <?php endforeach; ?>
-	      </ul>
-	    </td>
-
-	    <td>
-
-	      <ul style="margin-top: 45px;list-style-type: none;">
-	        <?php foreach ($bundling_detail as $bd) : ?>
-	          <li>
-	            <?= $bd['item_qty']; ?>
-	          </li>
-	        <?php endforeach; ?>
-	      </ul>
-	    </td>
-	    <td>
-
-	      <ul style="margin-top: 45px;list-style-type: none;">
-	        <?php foreach ($bundling_detail as $bd) : ?>
-	          <li>
-	            <?= $bd['weight']; ?>
-	          </li>
-	        <?php endforeach; ?>
-	      </ul>
-	    </td>
-      </tr>
+                        <td>
+                          <ul style="margin-top: 45px;list-style-type: none;">
+                            <?php foreach ($bundling_detail as $bd) : ?>
+                              <li>
+                                <?= $bd['weight']; ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </td>
+                      </tr>
   <?php endforeach; ?>
     </table>
   </center>

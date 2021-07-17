@@ -69,23 +69,19 @@
                       </td>
                       <td>
                         <?php if (!empty($this->uri->segment(4))) { ?>
-                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
-                            <?php if ($row['photo'] == '') { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } else { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } ?>
-                          <?php } ?>
+                          <!-- <?php if ($row['photo'] == '') { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } else { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } ?> -->
                           <a href="<?= base_url('admin_op/bundling/rb_detaill/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('admin_op/bundling/rb_editt/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                         <?php } else { ?>
-                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
-                            <?php if ($row['photo'] == '') { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } else { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } ?>
-                          <?php } ?>
+                          <!-- <?php if ($row['photo'] == '') { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } else { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } ?> -->
                           <a href="<?= base_url('admin_op/bundling/rb_detail/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('admin_op/bundling/rb_edit/'  . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                         <?php } ?>

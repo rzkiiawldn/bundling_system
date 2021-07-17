@@ -76,6 +76,9 @@
                     <?php foreach ($bundling as $row) : ?>
                       <tr>
                         <td>
+                          <?= $request_bundling['request_bundling_code']; ?>
+                        </td>
+                        <td>
                           <?= $row['item_bundling_name']; ?> <br> detail : <br>
                           <ul>
                             <?php foreach ($bundling_detail as $bd) : ?>
@@ -86,29 +89,10 @@
                           </ul>
                         </td>
                         <td>
-
-                          <ul style="margin-top: 45px;list-style-type: none;">
-                            <?php foreach ($bundling_detail as $bd) : ?>
-                              <li>
-                                <?= $bd['item_nonbundling_code']; ?>
-                              </li>
-                            <?php endforeach; ?>
-                          </ul>
+                          <?= $request_bundling['stock_allocation_name']; ?>
                         </td>
 
                         <td>
-
-                          <ul style="margin-top: 45px;list-style-type: none;">
-                            <?php foreach ($bundling_detail as $bd) : ?>
-                              <li>
-                                ?
-                              </li>
-                            <?php endforeach; ?>
-                          </ul>
-                        </td>
-
-                        <td>
-
                           <ul style="margin-top: 45px;list-style-type: none;">
                             <?php foreach ($bundling_detail as $bd) : ?>
                               <li>
@@ -117,8 +101,8 @@
                             <?php endforeach; ?>
                           </ul>
                         </td>
-                        <td>
 
+                        <td>
                           <ul style="margin-top: 45px;list-style-type: none;">
                             <?php foreach ($bundling_detail as $bd) : ?>
                               <li>
@@ -127,7 +111,6 @@
                             <?php endforeach; ?>
                           </ul>
                         </td>
-
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -139,7 +122,7 @@
             <div class="row no-print" style="margin-top: 150px;">
               <div class="col-12">
                 <p>* INI ADALAH CETAKAN KOMPUTER, TANDA TANGAN TIDAK DIPERLUKAN</p>
-                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                <a href="<?= base_url('report/request_bundling/' . $request_bundling['id_request_bundling']) ?>" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
               </div>
             </div>
           </div>

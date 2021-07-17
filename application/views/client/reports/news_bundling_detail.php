@@ -155,9 +155,9 @@
               <div class="col-12">
                 <h5>Status : </h5>
                 <?php if ($news['status'] == 0) { ?>
-                  <button class="btn btn-warning">Pending</button>
+                  <p style="color: yellow;">Pending</p>
                 <?php } else { ?>
-                  <button class="btn btn-primary">Approved </button>
+                  <p style="color: green;">Approved</p>
                 <?php } ?>
               </div>
             </div>

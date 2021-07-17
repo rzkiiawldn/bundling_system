@@ -146,29 +146,17 @@ body {
 
       <tr>
         <td>
-        <table border="1" width="100%" style="margin-top: 20px; margin-bottom: 20px;">
+        <table border="" width="100%" style="margin-top: 20px; margin-bottom: 20px;">
             <tr>
               <td>Delivered By</td>
-              <td>Approved By</td>
-              <td>Passed By</td>
-              <td>Ship By</td>
-              <td>Received By</td>
             </tr>
             <tr>
               <td width="25%">
                 <img src="<?= $approved ?>" width="100">
               </td>
-              <td width="25%"></td>
-              <td width="25%"></td>
-              <td width="25%"></td>
-              <td width="25%"></td>
             </tr>
             <tr>
               <td>Shipping</td>
-              <td>Sales & Mkt Adm</td>
-              <td>Security</td>
-              <td></td>
-              <td>Customer</td>
             </tr>
           </table>
         </td>

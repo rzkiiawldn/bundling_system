@@ -100,6 +100,20 @@
                     </div>
                   </div>
                 <?php } ?>
+                <div class="col-md-6 pt-0 mt-0">
+                  <div class="form-group">
+                    <label class="pt-0 mt-0">Created By</label>
+                    <p class="mb-0 pb-0"><?= $request_bundling['created_by']; ?></p>
+                    <hr class="mt-0 pt-0">
+                  </div>
+                </div>
+                <div class="col-md-6 pt-0 mt-0">
+                  <div class="form-group">
+                    <label class="pt-0 mt-0">Created Date</label>
+                    <p class="mb-0 pb-0"><?= $request_bundling['created_date']; ?></p>
+                    <hr class="mt-0 pt-0">
+                  </div>
+                </div>
               </div>
               <?php if (!empty($this->uri->segment(5))) { ?>
                 <a href="<?= base_url('admin_op/bundling/request_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info float-right">Back</a>

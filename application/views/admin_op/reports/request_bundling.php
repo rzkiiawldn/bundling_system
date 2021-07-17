@@ -100,7 +100,7 @@
           <?php if (empty($this->uri->segment(4))) { ?>
             <div class="form-group">
               <label>Request Bundling Code</label>
-              <select name="id_request_bundling" class="form-control">
+              <select name="id_request_bundling" class="form-control select2bs4">
                 <?php $id_location = $this->session->userdata('id_location'); ?>
                 <?php $request = $this->db->query(" SELECT * FROM request_bundling JOIN client ON request_bundling.id_client = client.id_client WHERE client.id_location = $id_location")->result_array();
                 foreach ($request as $row) : ?>
@@ -114,7 +114,7 @@
                 <input type="hidden" name="id1" value="<?= $this->uri->segment(4) ?>">
               <?php } ?>
               <label>Request Bundling Code</label>
-              <select name="id_request_bundling" class="form-control">
+              <select name="id_request_bundling" class="form-control select2bs4">
                 <option value="" selected disabled>-- select --</option>
                 <?php $request = $this->db->get_where('request_bundling', ['id_client' => $this->uri->segment(4)])->result_array();
 

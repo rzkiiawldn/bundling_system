@@ -169,6 +169,20 @@ class Bundling extends CI_Controller
       $id_status                  = htmlspecialchars($this->input->post('id_status'));
       $id_client                  = htmlspecialchars($this->input->post('id_client'));
 
+      $photo = $_FILES['photo'];
+      if ($photo = '') {
+      } else {
+        $config['allowed_types']    = 'jpg|PNG|png|jpeg|JPG|JPEG';
+        $config['max_size']         = '2048';
+        $config['upload_path']      = './assets/img/photo/';
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('photo')) {
+          $photo   = $this->upload->data('file_name');
+          $this->db->set('photo', $photo);
+        } else {
+        }
+      }
+
       $this->db->set('request_bundling_barcode', $request_bundling_barcode);
       $this->db->set('request_bundling_code', $request_bundling_code);
       $this->db->set('bundling_type', $bundling_type);
@@ -221,6 +235,20 @@ class Bundling extends CI_Controller
       $request_quantity           = htmlspecialchars($this->input->post('request_quantity'));
       $packing_type               = htmlspecialchars($this->input->post('packing_type'));
       $id_status                  = htmlspecialchars($this->input->post('id_status'));
+
+      $photo = $_FILES['photo'];
+      if ($photo = '') {
+      } else {
+        $config['allowed_types']    = 'jpg|PNG|png|jpeg|JPG|JPEG';
+        $config['max_size']         = '2048';
+        $config['upload_path']      = './assets/img/photo/';
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('photo')) {
+          $photo   = $this->upload->data('file_name');
+          $this->db->set('photo', $photo);
+        } else {
+        }
+      }
 
       $this->db->set('request_bundling_barcode', $request_bundling_barcode);
       $this->db->set('request_bundling_code', $request_bundling_code);

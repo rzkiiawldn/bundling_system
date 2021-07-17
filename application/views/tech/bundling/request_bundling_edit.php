@@ -88,7 +88,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label>Status *</label>
-                    <select name="id_status" id="id_status" class="form-control">
+                    <select name="id_status" id="id_status" class="form-control" onchange="status()">
                       <option value="" selected disabled>-- pilih --</option>
                       <?php foreach ($status as $item) : ?>
                         <?php if ($item['id_status'] == $request_bundling['id_status']) { ?>
@@ -144,9 +144,24 @@
                   <?php endforeach; ?>
                 </select>
               </div>
+            <?php } ?>
+            <div id="container" class="form-group col-md-6"></div>
           </div>
-        <?php } ?>
-        <button type="submit" class="btn btn-info float-right">EDIT</button>
+
+          <script type="text/javascript">
+            function status() {
+              var tes = document.getElementById("id_status").value;
+
+              var p_kontainer = document.getElementById("container");
+              if (tes == 1) {
+                p_kontainer.innerHTML = "<label>Upload Photo</label><input type='file' class='form-control' name='photo' required />";
+              } else {
+                p_kontainer.innerHTML = "<input type='hidden' class='form-control' name='photo' value='' />";
+              }
+            }
+          </script>
+
+          <button type="submit" class="btn btn-info float-right">EDIT</button>
         </div>
         </form>
       </div>

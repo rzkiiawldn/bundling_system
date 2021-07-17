@@ -71,35 +71,29 @@
                       </td>
                       <td>
                         <?php if (!empty($this->uri->segment(5))) { ?>
-                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
-                            <?php if ($row['photo'] == '') { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } else { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } ?>
-                          <?php } ?>
+                          <!-- <?php if ($row['photo'] == '') { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } else { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } ?> -->
                           <a href="<?= base_url('tech/bundling/rb_detailll/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_edittt/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_deleteee/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' . $row['id_request_bundling']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
-                            <?php if ($row['photo'] == '') { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } else { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } ?>
-                          <?php } ?>
+                          <!-- <?php if ($row['photo'] == '') { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } else { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } ?> -->
                           <a href="<?= base_url('tech/bundling/rb_detaill/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_editt/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_deletee/' . $this->uri->segment(4) . '/' . $row['id_request_bundling']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } else { ?>
-                          <?php if ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
-                            <?php if ($row['photo'] == '') { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } else { ?>
-                              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
-                            <?php } ?>
-                          <?php } ?>
+                          <!-- <?php if ($row['photo'] == '') { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#uploadBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } else { ?>
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#lihatBukti<?= $row['id_request_bundling'] ?>">Upload</button>
+                          <?php } ?> -->
                           <a href="<?= base_url('tech/bundling/rb_detail/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_edit/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
                           <a href="<?= base_url('tech/bundling/rb_delete/' . $row['id_request_bundling']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>

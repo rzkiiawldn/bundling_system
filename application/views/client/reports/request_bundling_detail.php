@@ -60,8 +60,8 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Product</th>
                       <th>Code</th>
+                      <th>Product</th>
                       <th>Marketplcae</th>
                       <th>Quantity</th>
                       <th>Weight</th>
@@ -74,6 +74,9 @@
                     <?php foreach ($bundling as $row) : ?>
                       <tr>
                         <td>
+                          <?= $request_bundling['request_bundling_code']; ?>
+                        </td>
+                        <td>
                           <?= $row['item_bundling_name']; ?> <br> detail : <br>
                           <ul>
                             <?php foreach ($bundling_detail as $bd) : ?>
@@ -84,29 +87,10 @@
                           </ul>
                         </td>
                         <td>
-
-                          <ul style="margin-top: 45px;list-style-type: none;">
-                            <?php foreach ($bundling_detail as $bd) : ?>
-                              <li>
-                                <?= $bd['item_nonbundling_code']; ?>
-                              </li>
-                            <?php endforeach; ?>
-                          </ul>
+                          <?= $request_bundling['stock_allocation_name']; ?>
                         </td>
 
                         <td>
-
-                          <ul style="margin-top: 45px;list-style-type: none;">
-                            <?php foreach ($bundling_detail as $bd) : ?>
-                              <li>
-                                ?
-                              </li>
-                            <?php endforeach; ?>
-                          </ul>
-                        </td>
-
-                        <td>
-
                           <ul style="margin-top: 45px;list-style-type: none;">
                             <?php foreach ($bundling_detail as $bd) : ?>
                               <li>
@@ -115,8 +99,8 @@
                             <?php endforeach; ?>
                           </ul>
                         </td>
-                        <td>
 
+                        <td>
                           <ul style="margin-top: 45px;list-style-type: none;">
                             <?php foreach ($bundling_detail as $bd) : ?>
                               <li>
@@ -125,7 +109,6 @@
                             <?php endforeach; ?>
                           </ul>
                         </td>
-
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

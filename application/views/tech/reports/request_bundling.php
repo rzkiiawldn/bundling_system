@@ -67,13 +67,13 @@
                       </td>
                       <td class="text-center">
                         <?php if (!empty($this->uri->segment(5))) { ?>
-                          <a href="<?= base_url('tech/reports/rb_detailll/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' .  $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
+                          <a href="<?= base_url('report/request_bundling/' . $row['id_request_bundling']) ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
                           <a href="<?= base_url('tech/reports/rb_detailll/' . $this->uri->segment(4) . '/' . $this->uri->segment(5) . '/' .  $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                         <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-                          <a href="<?= base_url('tech/reports/rb_detaill/' . $this->uri->segment(4) . '/' .  $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
+                          <a href="<?= base_url('report/request_bundling/' . $row['id_request_bundling']) ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
                           <a href="<?= base_url('tech/reports/rb_detaill/' . $this->uri->segment(4) . '/' .  $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                         <?php } else { ?>
-                          <a href="<?= base_url('tech/reports/rb_detail/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
+                          <a href="<?= base_url('report/request_bundling/' . $row['id_request_bundling']) ?>" class="btn btn-sm btn-default" title="detail"><i class="fas fa-print"></i></a>
                           <a href="<?= base_url('tech/reports/rb_detail/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                         <?php } ?>
                       </td>
@@ -106,7 +106,7 @@
             <input type="hidden" name="id2" value="<?= $this->uri->segment(5) ?>">
             <div class="form-group">
               <label>Request Bundling Code</label>
-              <select name="id_request_bundling" class="form-control">
+              <select name="id_request_bundling" class="form-control select2bs4">
                 <?php $id1 = $this->uri->segment(4); ?>
                 <?php $id2 = $this->uri->segment(5); ?>
                 <?php $request = $this->db->query(" SELECT * FROM request_bundling JOIN client ON request_bundling.id_client = client.id_client WHERE client.id_location = $id1 AND request_bundling.id_client = $id2")->result_array();
@@ -119,7 +119,7 @@
             <input type="hidden" name="id1" value="<?= $this->uri->segment(4) ?>">
             <div class="form-group">
               <label>Request Bundling Code</label>
-              <select name="id_request_bundling" class="form-control">
+              <select name="id_request_bundling" class="form-control select2bs4">
                 <?php $id1 = $this->uri->segment(4); ?>
                 <?php $request = $this->db->query(" SELECT * FROM request_bundling JOIN client ON request_bundling.id_client = client.id_client WHERE client.id_location = $id1")->result_array();
                 foreach ($request as $row) : ?>
@@ -130,7 +130,7 @@
           <?php } else { ?>
             <div class="form-group">
               <label>Request Bundling Code</label>
-              <select name="id_request_bundling" class="form-control">
+              <select name="id_request_bundling" class="form-control select2bs4">
                 <?php $request = $this->db->get('request_bundling')->result_array();
                 foreach ($request as $row) : ?>
                   <option value="<?= $row['id_request_bundling'] ?>"><?= $row['request_bundling_code']; ?></option>
