@@ -4,9 +4,9 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(4))) { ?>
-            <a href="<?= base_url('admin_op/reports/nb_create/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <a href="<?= base_url('admin_op/reports/nb_create/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_op/reports/nb_create'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <a href="<?= base_url('admin_op/reports/nb_create'); ?>" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a>
           <?php } ?>
 
         </div>
@@ -43,7 +43,6 @@
                     <th>Tanggal</th>
                     <th>Pihak 1</th>
                     <th>Pihak 2</th>
-                    <th>Barang</th>
                     <th>Status</th>
                     <th width="20%">ACTION</th>
                   </tr>
@@ -56,28 +55,33 @@
                       <td><?= $row['tanggal']; ?></td>
                       <td><?= $row['nama_pihak1']; ?></td>
                       <td><?= $row['nama_pihak2']; ?></td>
-                      <td><?= $row['id_barang']; ?></td>
                       <td>
                         <?php if ($row['status'] == 0) { ?>
                           <span class="badge badge-sm badge-warning">Pending</span>
                         <?php } else { ?>
-                          <span class="badge badge-sm badge-success">Diterima</span>
+                          <span class="badge badge-sm badge-success">Approved</span>
                         <?php } ?>
                       <td>
                         <?php if (!empty($this->uri->segment(4))) { ?>
                           <?php if ($row['status'] == 1) { ?>
                             <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_detaill/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_deletee/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
+                          <?php } else { ?>
+                            <a href="<?= base_url('admin_op/reports/nb_detaill/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_editt/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_deletee/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                           <?php } ?>
-                          <a href="<?= base_url('admin_op/reports/nb_detaill/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="<?= base_url('admin_op/reports/nb_editt/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
-                          <a href="<?= base_url('admin_op/reports/nb_deletee/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } else { ?>
                           <?php if ($row['status'] == 1) { ?>
                             <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_delete/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
+                          <?php } else { ?>
+                            <a href="<?= base_url('admin_op/reports/nb_detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_edit/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
+                            <a href="<?= base_url('admin_op/reports/nb_delete/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                           <?php } ?>
-                          <a href="<?= base_url('admin_op/reports/nb_detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="<?= base_url('admin_op/reports/nb_edit/' . $row['id_news']); ?>" class="btn btn-sm btn-success" title="edit"><i class="fas fa-pen"></i></a>
-                          <a href="<?= base_url('admin_op/reports/nb_delete/' . $row['id_news']); ?>" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-sm btn-danger" title="hapus"><i class="fas fa-trash"></i></a>
                         <?php } ?>
 
                       </td>

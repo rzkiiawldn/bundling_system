@@ -472,4 +472,106 @@ class Master_data extends CI_Controller
 
     redirect('tech/master_data/item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5));
   }
+
+  // IMPORT EXCEL
+
+  public function excel()
+  {
+    $data = [
+      'judul' => 'Import Excel',
+      'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/tech_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('tech/master_data/import_excel');
+    $this->load->view('templates/footer');
+  }
+
+  public function import_excel()
+  {
+    if (isset($_FILES["file"]["name"])) {
+      // upload
+      $file_tmp = $_FILES['file']['tmp_name'];
+      $file_name = $_FILES['file']['name'];
+      $file_size = $_FILES['file']['size'];
+      $file_type = $_FILES['file']['type'];
+      // move_uploaded_file($file_tmp,"uploads/".$file_name); // simpan filenya di folder uploads
+
+      $object = PHPExcel_IOFactory::load($file_tmp);
+
+      foreach ($object->getWorksheetIterator() as $worksheet) {
+
+        $highestRow = $worksheet->getHighestRow();
+        $highestColumn = $worksheet->getHighestColumn();
+
+        for ($row = 2; $row <= $highestRow; $row++) {
+
+          $item_nonbundling_code = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+          $item_nonbundling_name = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+          $item_nonbundling_barcode = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+          $manage_by = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+          $description = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+          $brand = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+          $model = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+          $category = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+          $minimum_stock = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+          $publish_price = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+          $additional_expired = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
+          $size = $worksheet->getCellByColumnAndRow(11, $row)->getValue();
+          $length = $worksheet->getCellByColumnAndRow(12, $row)->getValue();
+          $width = $worksheet->getCellByColumnAndRow(13, $row)->getValue();
+          $height = $worksheet->getCellByColumnAndRow(14, $row)->getValue();
+          $weight = $worksheet->getCellByColumnAndRow(15, $row)->getValue();
+          $dimension = $worksheet->getCellByColumnAndRow(16, $row)->getValue();
+          $active = $worksheet->getCellByColumnAndRow(17, $row)->getValue();
+          $is_fragile = $worksheet->getCellByColumnAndRow(18, $row)->getValue();
+          $cool_storage = $worksheet->getCellByColumnAndRow(19, $row)->getValue();
+          $id_client = $worksheet->getCellByColumnAndRow(20, $row)->getValue();
+
+          $data[] = array(
+            'item_nonbundling_code'           => $item_nonbundling_code,
+            'item_nonbundling_name'           => $item_nonbundling_name,
+            'item_nonbundling_barcode'        => $item_nonbundling_barcode,
+            'manage_by'                       => $manage_by,
+            'description'                     => $description,
+            'brand'                           => $brand,
+            'model'                           => $model,
+            'category'                        => $category,
+            'minimum_stock'                   => $minimum_stock,
+            'publish_price'                   => $publish_price,
+            'additional_expired'              => $additional_expired,
+            'size'                            => $size,
+            'length'                          => $length,
+            'width'                           => $width,
+            'height'                          => $height,
+            'weight'                          => $weight,
+            'dimension'                       => ($length * $width * $height) / 1000000,
+            'active'                          => $active,
+            'is_fragile'                      => $is_fragile,
+            'cool_storage'                    => $cool_storage,
+            'id_client'                       => $id_client,
+            'created_date'                    => date('Y-m-d'),
+            'created_by'                      => $this->session->userdata('fullname'),
+          );
+        }
+      }
+
+      $this->db->insert_batch('item_nonbundling', $data);
+
+      $message = array(
+        'message' => '<div class="alert alert-success">Import file excel berhasil disimpan di database</div>',
+      );
+
+      $this->session->set_flashdata($message);
+      redirect('tech/master_data/item');
+    } else {
+      $message = array(
+        'message' => '<div class="alert alert-danger">Import file gagal, coba lagi</div>',
+      );
+
+      $this->session->set_flashdata($message);
+      redirect('tech/master_data/excel');
+    }
+  }
 }

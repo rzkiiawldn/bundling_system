@@ -35,10 +35,9 @@
                 <thead>
                   <tr class="text-uppercase">
                     <th width="5%">NO</th>
-                    <th>Tanggal</th>
+                    <th>Date Arrived</th>
                     <th>Pihak 1</th>
                     <th>Pihak 2</th>
-                    <th>Barang</th>
                     <th>Status</th>
                     <th width="15%">ACTION</th>
                   </tr>
@@ -51,18 +50,19 @@
                       <td><?= $row['tanggal']; ?></td>
                       <td><?= $row['nama_pihak1']; ?></td>
                       <td><?= $row['nama_pihak2']; ?></td>
-                      <td><?= $row['id_barang']; ?></td>
                       <td>
                         <?php if ($row['status'] == 0) { ?>
                           <span class="badge badge-sm badge-warning">Pending</span>
                         <?php } else { ?>
-                          <span class="badge badge-sm badge-success">Diterima</span>
+                          <span class="badge badge-sm badge-success">Approved</span>
                         <?php } ?>
                       <td>
                         <?php if ($row['status'] == 1) { ?>
                           <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                          <a href="<?= base_url('client/reports/detail_news/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                        <?php } else { ?>
+                          <a href="<?= base_url('client/reports/detail_news/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                         <?php } ?>
-                        <a href="<?= base_url('client/reports/detail_news/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>

@@ -4,11 +4,11 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(6))) { ?>
-            <a href="<?= base_url('admin_store/master_data/item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/master_data/item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_store/master_data/item/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/master_data/item/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_store/master_data/item'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/master_data/item'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } ?>
         </div>
         <div class="col-sm-6">
@@ -111,17 +111,17 @@
                     <?= form_error('publish_price', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>addtional expired *</label>
+                    <label>addtional expired </label>
                     <div class="input-group mb-3">
                       <input type="number" min="1" class="form-control" placeholder="0" name="additional_expired" aria-describedby="basic-addon1" value="<?= $item_nonbundling['additional_expired']; ?>">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">days</span>
                       </div>
                     </div>
-                    <?= form_error('additional_expired', '<small class="text-danger pl-2">', '</small>'); ?>
+                    
                   </div>
                   <div class="form-group col-md-6">
-                    <label>size *</label>
+                    <label>size </label>
                     <select name="size" id="size" class="form-control">
                       <?php foreach ($size as $row) : ?>
                         <?php if ($row == $item_nonbundling['size']) { ?>
@@ -131,7 +131,7 @@
                         <?php } ?>
                       <?php endforeach; ?>
                     </select>
-                    <?= form_error('size', '<small class="text-danger pl-2">', '</small>'); ?>
+                   
                   </div>
                 </div>
                 <div class="row">
@@ -168,9 +168,9 @@
                   <div class="form-group col-md-3">
                     <label>weight *</label>
                     <div class="input-group mb-3">
-                      <input type="number" min="1" class="form-control" aria-describedby="basic-addon1" name="weight" value="<?= $item_nonbundling['weight']; ?>">
+                      <input type="number" step=".01" class="form-control" aria-describedby="basic-addon1" name="weight" value="<?= $item_nonbundling['weight']; ?>">
                       <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">cm</span>
+                        <span class="input-group-text" id="basic-addon1">kg</span>
                       </div>
                     </div>
                     <?= form_error('weight', '<small class="text-danger pl-2">', '</small>'); ?>
@@ -272,7 +272,7 @@
                     </div>
                   </div>
                 <?php } ?>
-                <button type="submit" class="btn btn-info float-right">EDIT</button>
+                <button type="submit" class="btn btn-info float-right">UPDATE</button>
               </div>
           </div>
           </form>

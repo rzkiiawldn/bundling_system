@@ -4,11 +4,38 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_store/master_data/create_item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/create_item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>">CREATE</a>
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/excel'); ?>">UPLOAD ITEM</a>
+              </div>
+            </div>
+            <!-- <a href="" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a> -->
           <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-            <a href="<?= base_url('admin_store/master_data/create_item/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/create_item/' . $this->uri->segment(4)); ?>">CREATE</a>
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/excel'); ?>">UPLOAD ITEM</a>
+              </div>
+            </div>
+            <!-- <a href="" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a> -->
           <?php } else { ?>
-            <a href="<?= base_url('admin_store/master_data/create_item'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/create_item'); ?>">CREATE</a>
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/excel'); ?>">UPLOAD ITEM</a>
+              </div>
+            </div>
+            <!-- <a href="" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a> -->
           <?php } ?>
         </div>
         <div class="col-sm-6">
@@ -51,7 +78,7 @@
                     <th>ITEM NAME</th>
                     <th>BARCODE</th>
                     <th>CATEGORY</th>
-                    <th>Qty</th>
+                    <th>MINIMUM STOCK</th>
                     <th width="15%">ACTION</th>
                   </tr>
                 </thead>

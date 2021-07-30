@@ -61,10 +61,12 @@
                       <td><?= $row['request_quantity']; ?></td>
                       <td><?= $row['packing_type']; ?></td>
                       <td>
-                        <?php if ($row['status'] == 'process' || $row['status'] == 'request') { ?>
+                        <?php if ($row['status'] == 'req' || $row['status'] == 'request') { ?>
                           <span class="badge badge-warning"><?= $row['status']; ?></span>
                         <?php } elseif ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
                           <span class="badge badge-success"><?= $row['status']; ?></span>
+                        <?php } elseif ($row['status'] == 'process') { ?>
+                          <span class="badge badge-info"><?= $row['status']; ?></span>
                         <?php } else { ?>
                           <span class="badge badge-danger"><?= $row['status']; ?></span>
                         <?php }  ?>

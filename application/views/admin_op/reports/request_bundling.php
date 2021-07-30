@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">  <i class="fas fa-plus"></i> 
             CREATE
           </button>
         </div>
@@ -126,7 +126,7 @@
           <?php } ?>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-primary">Add</button>
         </div>
       </form>

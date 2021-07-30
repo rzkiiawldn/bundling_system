@@ -4,9 +4,9 @@
       <div class="row mb-2">
         <div class="col-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('spv/reports/news_bundling_report/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('spv/reports/news_bundling_report/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('spv/reports/news_bundling_report'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('spv/reports/news_bundling_report'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } ?>
         </div>
         <div class="col-6">
@@ -138,17 +138,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $news_detail = $this->db->get_where('request_bundling', ['id_request_bundling' => $news['id_barang']])->row_array() ?>
-                    <?php $id_item = $news_detail['id_item_bundling']; ?>
-                    <?php $bundling_detail = $this->db->query(" SELECT * FROM item_bundling_detail AS ibd JOIN item_bundling AS ib ON ibd.id_item_bundling = ib.id_item_bundling JOIN client ON ib.id_client = client.id_client WHERE ibd.id_item_bundling = $id_item ")->result_array() ?>
+                    <?php $id = $news['news_id'] ?>
+                    <?php $news_detail = $this->db->query("SELECT * FROM news_detail JOIN news ON news_detail.id_news = news.id_news JOIN request_bundling ON news_detail.id_request_bundling = request_bundling.id_request_bundling LEFT JOIN client ON news.id_client = client.id_client WHERE news.id_news = $id")->result_array(); ?>
                     <?php $no = 1;
-                    foreach ($bundling_detail as $row) : ?>
+                    foreach ($news_detail as $row) : ?>
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $row['client_name']; ?></td>
-                        <td><?= $row['item_qty']; ?></td>
-                        <td>Pcs</td>
-                        <td>DI TERIMA SECARA PCS</td>
+                        <td><?= $row['request_quantity']; ?></td>
+                        <td><?= $row['uom']; ?></td>
+                        <td><?= $row['remaks']; ?></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

@@ -29,7 +29,7 @@
               <p>Item NonBundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-archive"></i>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
               <p>Item Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-bookmark"></i>
             </div>
           </div>
         </div>

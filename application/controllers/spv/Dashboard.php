@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller
     }
 
     $data = [
-      'judul'     => 'dashboard',
+      'judul'     => 'PT BINTANG DAGANG INTERNASIONAL - HAISTAR',
       'user'      => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'news_process'      => $news_process,
       'news_finish'       => $news_finish

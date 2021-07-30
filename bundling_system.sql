@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Jul 2021 pada 16.49
+-- Waktu pembuatan: 30 Jul 2021 pada 03.40
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.15
 
@@ -100,7 +100,10 @@ CREATE TABLE `item_bundling` (
 INSERT INTO `item_bundling` (`id_item_bundling`, `item_bundling_code`, `item_bundling_name`, `item_bundling_barcode`, `manage_by`, `qty`, `total_price`, `id_client`, `created_date`, `created_by`) VALUES
 (1, 'BUND-1', 'bundling 1', 'BUND-1', 'Expired Date', 4, '26000', 10, '2021-07-02', '8'),
 (2, 'BUND-2', 'bundling 2', 'BUND-2', 'Expired Date', 3, '42000', 9, '2021-07-02', '8'),
-(7, 'asas', 'as', 'asas', 'Expired Date', 1, '2000', 9, '2021-07-14', 'Admin Store');
+(7, 'asas', 'as', 'asas', 'Expired Date', 1, '2000', 9, '2021-07-14', 'Admin Store'),
+(8, 'as', 'as', 'as', 'Expired Date', 12, '24000', 9, '2021-07-29', 'tech'),
+(9, '11', '11', '11', 'Batch Inbound', 2, '2001', 9, '2021-07-29', 'tech'),
+(10, '11', '11', '11', 'Batch Inbound', 2, '2001', 9, '2021-07-29', 'tech');
 
 -- --------------------------------------------------------
 
@@ -126,7 +129,12 @@ INSERT INTO `item_bundling_detail` (`id_item_bundling_detail`, `id_item_bundling
 (3, 2, 1, 2, '40000'),
 (5, 1, 3, 1, '2000'),
 (26, 2, 3, 1, '2000'),
-(27, 7, 2, 1, '2000');
+(27, 7, 2, 1, '2000'),
+(28, 8, 3, 12, '24000'),
+(29, 9, 2, 1, '2000'),
+(30, 9, 8, 1, '1'),
+(31, 10, 2, 1, '2000'),
+(32, 10, 9, 1, '1');
 
 -- --------------------------------------------------------
 
@@ -151,7 +159,7 @@ CREATE TABLE `item_nonbundling` (
   `length` int(20) NOT NULL,
   `width` int(20) NOT NULL,
   `height` int(20) NOT NULL,
-  `weight` int(20) NOT NULL,
+  `weight` decimal(10,2) NOT NULL,
   `dimension` varchar(100) NOT NULL,
   `active` varchar(10) NOT NULL,
   `is_fragile` varchar(10) NOT NULL,
@@ -166,12 +174,9 @@ CREATE TABLE `item_nonbundling` (
 --
 
 INSERT INTO `item_nonbundling` (`id_item_nonbundling`, `item_nonbundling_code`, `item_nonbundling_name`, `item_nonbundling_barcode`, `manage_by`, `description`, `brand`, `model`, `category`, `minimum_stock`, `publish_price`, `additional_expired`, `size`, `length`, `width`, `height`, `weight`, `dimension`, `active`, `is_fragile`, `cool_storage`, `id_client`, `created_date`, `created_by`) VALUES
-(1, 'CODE-1', 'Item 1', 'CODE-1', 'Expired Date', 'nothing', 'nothing', 'nothing', 'nothing', 100, 20000, 7, 'S', 10, 10, 10, 1, '0.001', 'Yes', 'Yes', 'Yes', 9, '2021-07-02', '8'),
-(2, 'CODE-2', 'Item 2', 'CODE-2', 'Expired Date', 'nothing', 'nothing', 'nothing', 'nothing', 10, 2000, 2, 'S', 1, 1, 1, 1, '0.000001', 'Yes', 'Yes', 'Yes', 9, '2021-07-02', '8'),
-(3, 'CODE-3', 'Item 3', 'CODE-3', 'Expired Date', 'nothing', 'nothing', 'nothing', 'nothing', 100, 2000, 8, 'S', 1, 2, 2, 1, '0.000004', 'Yes', 'Yes', 'Yes', 10, '2021-07-02', '8'),
-(8, 'asss', 'as', 'asss', 'Batch Inbound', 'a', 'nothing', 'nothing', 'nothing', 1, 1, 1, 'M', 1, 1, 1, 1, '0.000001', 'Yes', 'Yes', 'Yes', 10, '2021-07-12', 'Admin Store'),
-(9, 'as', 'as', 'as', 'Batch Inbound', 'as', 'as', 'as', 'as', 1, 1, 1, 'S', 1, 1, 1, 1, '0.000001', 'Yes', 'Yes', 'Yes', 9, '2021-07-14', 'Admin Store'),
-(10, 'aadasdasdasd', 'as', 'aadasdasdasd', 'Production Date', 'asas', 'nothing', 'nothing', 'nothing', 1, 1, 1, 'M', 2, 2, 2, 2, '0.000008', 'Yes', 'Yes', 'Yes', 10, '2021-07-14', 'Admin Store');
+(1, 'CODE-1', 'Item 1', 'CODE-1', 'Expired Date', 'nothing', 'nothing', 'nothing', 'nothing', 100, 20000, 7, 'S', 10, 10, 10, '1.00', '0.001', 'Yes', 'Yes', 'Yes', 9, '2021-07-02', '8'),
+(2, 'CODE-2', 'Item 2', 'CODE-2', 'Expired Date', 'nothing', 'nothing', 'nothing', 'nothing', 10, 2000, 2, 'S', 1, 1, 1, '1.00', '0.000001', 'Yes', 'Yes', 'Yes', 9, '2021-07-02', '8'),
+(3, 'CODE-3', 'Item 3', 'CODE-3', 'Expired Date', 'nothing', 'nothing', 'nothing', 'nothing', 100, 2000, 8, 'S', 1, 2, 2, '1.00', '0.000004', 'Yes', 'Yes', 'Yes', 10, '2021-07-02', '8');
 
 -- --------------------------------------------------------
 
@@ -215,7 +220,8 @@ CREATE TABLE `news` (
   `posisi_pihak2` varchar(225) NOT NULL,
   `dept_pihak2` varchar(225) NOT NULL,
   `lokasi` varchar(225) NOT NULL,
-  `id_barang` int(11) NOT NULL,
+  `uom` varchar(100) NOT NULL,
+  `remaks` varchar(225) NOT NULL,
   `tanggal` date NOT NULL,
   `status` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
@@ -227,8 +233,41 @@ CREATE TABLE `news` (
 -- Dumping data untuk tabel `news`
 --
 
-INSERT INTO `news` (`id_news`, `nama_pihak1`, `posisi_pihak1`, `dept_pihak1`, `plat_code`, `nama_pihak2`, `posisi_pihak2`, `dept_pihak2`, `lokasi`, `id_barang`, `tanggal`, `status`, `id_client`, `created_by`, `created_date`) VALUES
-(4, 'asas', 'asas', 'asas', '', 'asas', 'asas', 'asas', 'asas', 14, '2021-12-31', 1, 9, '8', '0000-00-00');
+INSERT INTO `news` (`id_news`, `nama_pihak1`, `posisi_pihak1`, `dept_pihak1`, `plat_code`, `nama_pihak2`, `posisi_pihak2`, `dept_pihak2`, `lokasi`, `uom`, `remaks`, `tanggal`, `status`, `id_client`, `created_by`, `created_date`) VALUES
+(14, 'amm', 'amm', 'amm', 'auukk', 'annj', 'annj', 'annj', 'auukk', 'Karton', 'annkk', '2021-12-31', 1, 9, 'tech', '2021-07-30'),
+(15, 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'Pack', 'as', '2021-12-31', 0, 9, 'admin operational', '2021-07-30');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `news_detail`
+--
+
+CREATE TABLE `news_detail` (
+  `id_news_detail` int(11) NOT NULL,
+  `id_news` int(11) NOT NULL,
+  `id_request_bundling` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `news_detail`
+--
+
+INSERT INTO `news_detail` (`id_news_detail`, `id_news`, `id_request_bundling`) VALUES
+(2, 10, 20),
+(3, 10, 22),
+(4, 11, 15),
+(5, 11, 20),
+(6, 11, 14),
+(7, 12, 14),
+(8, 12, 15),
+(9, 13, 14),
+(10, 13, 13),
+(11, 14, 15),
+(13, 14, 14),
+(15, 14, 13),
+(18, 15, 14),
+(20, 15, 13);
 
 -- --------------------------------------------------------
 
@@ -261,7 +300,7 @@ INSERT INTO `request_bundling` (`id_request_bundling`, `request_bundling_barcode
 (14, 'REQ-2', 'REQ-2', 'Bundling from inbound', 2, 2, 'BOX', 4, 10, 1, '0000-00-00', '', ''),
 (15, 'REQ-3', 'REQ-3', 'Bundling from inbound', 2, 2, 'BUBBLE WRAP', 1, 11, 1, '0000-00-00', 'admin operational', '2.PNG'),
 (20, 'assa', 'assa', 'Bundling from inbound', 1, 1, 'PLASTIC', 4, 11, 1, '2021-07-14', 'Admin Store', ''),
-(21, 'asdasd', 'asdasd', 'Bundling from inbound', 2, 1, 'PLASTIC', 1, 10, 0, '2021-07-14', 'Admin Store', '');
+(22, 'as', 'as', 'Bundling from inbound', 2, 1, 'BUBBLE WRAP', 4, 9, 0, '2021-07-29', 'tech', '');
 
 -- --------------------------------------------------------
 
@@ -378,8 +417,7 @@ ALTER TABLE `item_bundling_detail`
 -- Indeks untuk tabel `item_nonbundling`
 --
 ALTER TABLE `item_nonbundling`
-  ADD PRIMARY KEY (`id_item_nonbundling`),
-  ADD KEY `id_client` (`id_client`);
+  ADD PRIMARY KEY (`id_item_nonbundling`);
 
 --
 -- Indeks untuk tabel `location`
@@ -392,8 +430,13 @@ ALTER TABLE `location`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id_news`),
-  ADD KEY `id_client` (`id_client`),
-  ADD KEY `id_barang` (`id_barang`);
+  ADD KEY `id_client` (`id_client`);
+
+--
+-- Indeks untuk tabel `news_detail`
+--
+ALTER TABLE `news_detail`
+  ADD PRIMARY KEY (`id_news_detail`);
 
 --
 -- Indeks untuk tabel `request_bundling`
@@ -443,19 +486,19 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT untuk tabel `item_bundling`
 --
 ALTER TABLE `item_bundling`
-  MODIFY `id_item_bundling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_item_bundling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `item_bundling_detail`
 --
 ALTER TABLE `item_bundling_detail`
-  MODIFY `id_item_bundling_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_item_bundling_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `item_nonbundling`
 --
 ALTER TABLE `item_nonbundling`
-  MODIFY `id_item_nonbundling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_item_nonbundling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `location`
@@ -467,13 +510,19 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT untuk tabel `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT untuk tabel `news_detail`
+--
+ALTER TABLE `news_detail`
+  MODIFY `id_news_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `request_bundling`
 --
 ALTER TABLE `request_bundling`
-  MODIFY `id_request_bundling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_request_bundling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `status`
@@ -503,40 +552,6 @@ ALTER TABLE `user`
 ALTER TABLE `client`
   ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`id_stock_allocation`) REFERENCES `stock_allocation` (`id_stock_allocation`),
   ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `item_bundling`
---
-ALTER TABLE `item_bundling`
-  ADD CONSTRAINT `item_bundling_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
-
---
--- Ketidakleluasaan untuk tabel `item_bundling_detail`
---
-ALTER TABLE `item_bundling_detail`
-  ADD CONSTRAINT `item_bundling_detail_ibfk_1` FOREIGN KEY (`id_item_bundling`) REFERENCES `item_bundling` (`id_item_bundling`),
-  ADD CONSTRAINT `item_bundling_detail_ibfk_2` FOREIGN KEY (`id_item_nonbundling`) REFERENCES `item_nonbundling` (`id_item_nonbundling`);
-
---
--- Ketidakleluasaan untuk tabel `item_nonbundling`
---
-ALTER TABLE `item_nonbundling`
-  ADD CONSTRAINT `item_nonbundling_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
-
---
--- Ketidakleluasaan untuk tabel `news`
---
-ALTER TABLE `news`
-  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`),
-  ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `request_bundling` (`id_request_bundling`);
-
---
--- Ketidakleluasaan untuk tabel `request_bundling`
---
-ALTER TABLE `request_bundling`
-  ADD CONSTRAINT `request_bundling_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`),
-  ADD CONSTRAINT `request_bundling_ibfk_3` FOREIGN KEY (`id_item_bundling`) REFERENCES `item_bundling` (`id_item_bundling`),
-  ADD CONSTRAINT `request_bundling_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `status` (`id_status`);
 
 --
 -- Ketidakleluasaan untuk tabel `user`

@@ -15,10 +15,15 @@ class Report extends CI_Controller
     {
         $this->load->library('dompdf_gen');
         $data = [
-            'judul'             => 'Laporan',
+            'judul'             => 'Request Bundling Report',
             'gambar'            => FCPATH . 'assets/logo.jpeg',
             'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-            'request_bundling'        => $this->db->query("SELECT request_bundling.created_by AS created, request_bundling.*, item_bundling.*, status.*, client.*, stock_allocation.*, location.*, user.*  FROM request_bundling LEFT JOIN item_bundling ON request_bundling.id_item_bundling = item_bundling.id_item_bundling LEFT JOIN status ON request_bundling.id_status = status.id_status LEFT JOIN client ON request_bundling.id_client = client.id_client LEFT JOIN stock_allocation ON client.id_stock_allocation = stock_allocation.id_stock_allocation JOIN location ON client.id_location = location.id_location JOIN user ON client.user_id = user.id_user WHERE id_request_bundling = $id_request_bundling")->row_array(),
+            'request_bundling'        => $this->db->query("SELECT request_bundling.created_by AS created, request_bundling.*, item_bundling.*, status.*, client.*, 
+            stock_allocation.*, location.*, user.*  FROM request_bundling LEFT JOIN item_bundling ON request_bundling.id_item_bundling = 
+            item_bundling.id_item_bundling LEFT JOIN status ON request_bundling.id_status = status.id_status LEFT JOIN client ON request_bundling.id_client = 
+            client.id_client LEFT JOIN stock_allocation ON client.id_stock_allocation = stock_allocation.id_stock_allocation JOIN location ON 
+            client.id_location = location.id_location JOIN user ON client.user_id = user.id_user WHERE id_request_bundling = 
+            $id_request_bundling")->row_array(),
 
         ];
 
@@ -33,18 +38,18 @@ class Report extends CI_Controller
         $this->dompdf->render();
         ob_end_clean();
         $this->dompdf->stream("laporan.pdf", array('Attachment' => 0));
-        $this->session->set_flashdata('petugas', 'Success as a petugas.');
+        
     }
 
     public function news_bundling($id)
     {
         $this->load->library('dompdf_gen');
         $data = [
-            'judul'             => 'Laporan',
+            'judul'             => 'News Bundling Report',
             'gambar'            => FCPATH . 'assets/logo.jpeg',
             'approved'            => FCPATH . 'assets/approved.png',
             'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-            'news'              => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+            'news'              =>  $this->db->query("SELECT * FROM news JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array()
         ];
 
         $this->load->view('print/news_bundling', $data);
@@ -58,6 +63,6 @@ class Report extends CI_Controller
         $this->dompdf->render();
         ob_end_clean();
         $this->dompdf->stream("laporan.pdf", array('Attachment' => 0));
-        $this->session->set_flashdata('petugas', 'Success as a petugas.');
+        
     }
 }

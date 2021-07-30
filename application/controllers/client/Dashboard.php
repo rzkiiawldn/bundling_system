@@ -16,7 +16,7 @@ class Dashboard extends CI_Controller
     $client = $this->db->get_where('client', ['user_id' => $this->session->userdata('id_user')])->row_array();
     $id_client = $client['id_client'];
     $data = [
-      'judul'     => 'dashboard',
+      'judul'     => 'PT BINTANG DAGANG INTERNASIONAL - HAISTARR',
       'user'      => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'item_nonbundling' => $this->db->get_where('item_nonbundling', ['id_client' => $id_client])->num_rows(),
       'item_bundling' => $this->db->get_where('item_bundling', ['id_client' => $id_client])->num_rows(),

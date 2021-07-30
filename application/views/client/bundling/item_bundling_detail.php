@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <a href="<?= base_url('client/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+          <a href="<?= base_url('client/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -84,7 +84,7 @@
               </div>
               <div class="row mt-3">
                 <div class="col-md-12">
-                  <h5>Virtual Bundling Detail</h5>
+                  <h5>Item Bundling Detail</h5>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <tr>

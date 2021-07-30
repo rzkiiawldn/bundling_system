@@ -55,7 +55,7 @@
                     <?= form_error('country', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-info">CREATE</button>
+                <button type="submit" class="btn btn-info float-right">CREATE</button>
               </div>
             </form>
           </div>

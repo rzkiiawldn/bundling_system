@@ -227,7 +227,7 @@
             <!-- MASTER DATA -->
             <li class="nav-item <?= $this->uri->segment(2) == 'item' ? 'menu-open' : null; ?>">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-database"></i>
+                <i class="fas fa-file-alt"></i>
                 <p>
                   MASTER DATA
                   <i class="fas fa-angle-left right"></i>

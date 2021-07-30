@@ -31,7 +31,7 @@ body {
           <center>
            <p style="margin-top:0px">
             <b>BERITA ACARA SERAH TERIMA BARANG</b> <br><br>
-            No sekian
+           
           </p>
           </center>
         </td>
@@ -111,17 +111,16 @@ body {
             <th>UoM</th>
             <th>Remaks</th>
           </tr>
-            <?php $news_detail = $this->db->get_where('request_bundling', ['id_request_bundling' => $news['id_barang']])->row_array() ?>
-                    <?php $id_item = $news_detail['id_item_bundling']; ?>
-                    <?php $bundling_detail = $this->db->query(" SELECT * FROM item_bundling_detail AS ibd JOIN item_bundling AS ib ON ibd.id_item_bundling = ib.id_item_bundling JOIN client ON ib.id_client = client.id_client WHERE ibd.id_item_bundling = $id_item ")->result_array() ?>
-                    <?php $no = 1;
-                    foreach ($bundling_detail as $row) : ?>
+             <?php $id = $news['id_news'] ?>
+              <?php $news_detail = $this->db->query("SELECT * FROM news_detail JOIN news ON news_detail.id_news = news.id_news JOIN request_bundling ON news_detail.id_request_bundling = request_bundling.id_request_bundling LEFT JOIN client ON news.id_client = client.id_client WHERE news.id_news = $id")->result_array(); ?>
+              <?php $no = 1;
+              foreach ($news_detail as $row) : ?>
           <tr>
             <td><?= $no++; ?></td>
             <td><?= $row['client_name']; ?></td>
-            <td><?= $row['item_qty']; ?></td>
-            <td>Pcs</td>
-            <td>DI TERIMA SECARA PCS</td>
+            <td><?= $row['request_quantity']; ?></td>
+            <td><?= $row['uom']; ?></td>
+            <td><?= $row['remaks']; ?></td>
           </tr>
         <?php endforeach ?>
         </table>
@@ -148,7 +147,7 @@ body {
         <td>
         <table border="" width="100%" style="margin-top: 20px; margin-bottom: 20px;">
             <tr>
-              <td>Delivered By</td>
+              <td>Menyetujui</td>
             </tr>
             <tr>
               <td width="25%">
@@ -156,7 +155,7 @@ body {
               </td>
             </tr>
             <tr>
-              <td>Shipping</td>
+              <td>Supervisior</td>
             </tr>
           </table>
         </td>
@@ -183,36 +182,31 @@ body {
               <tr>
                 <td>Hari</td>
                 <td>:</td>
-                <td>hari</td>
+                <td><?= date('l'); ?></td>
               </tr>
               <tr>
-                <td>Hari</td>
+                <td>Tanggal</td>
                 <td>:</td>
-                <td>hari</td>
+                <td><?= date('F Y'); ?></td>
               </tr>
               <tr>
-                <td>Hari</td>
+                <td>Client</td>
                 <td>:</td>
-                <td>hari</td>
+                <td><?= $news['client_name']; ?></td>
               </tr>
             </table>
           </td>
           <td width="50%">
             <table>
               <tr>
-                <td>Hari</td>
+                <td>Transporter/ekspedisi</td>
                 <td>:</td>
-                <td>hari</td>
+                <td><?= $news['nama_pihak1']; ?></td>
               </tr>
               <tr>
-                <td>Hari</td>
+                <td>No Kendaraan</td>
                 <td>:</td>
-                <td>hari</td>
-              </tr>
-              <tr>
-                <td>Hari</td>
-                <td>:</td>
-                <td>hari</td>
+                <td><?= $news['plat_code']; ?></td>
               </tr>
             </table>
           </td>
@@ -223,22 +217,24 @@ body {
         <tr>
           <th>No</th>
           <th>Client</th>
-          <th>Kode</th>
-          <th>Item Deskripsi</th>
+          <th>Code</th>
+          <th>News Deskripsi</th>
           <th>Qty</th>
           <th>UoM</th>
           <th>Remaks</th>
         </tr>
-        <tr>
           <?php $no=1; ?>
+        <?php foreach($news_detail as $row): ?>
+        <tr>
           <td><?= $no++; ?></td>
-          <td><?= $no++; ?></td>
-          <td><?= $no++; ?></td>
-          <td><?= $no++; ?></td>
-          <td><?= $no++; ?></td>
-          <td><?= $no++; ?></td>
-          <td><?= $no++; ?></td>
+          <td><?= $row['client_name']; ?></td>
+          <td><?= $row['request_bundling_code'] ?></td>
+          <td></td>
+          <td><?= $row['request_quantity']; ?></td>
+          <td><?= $row['uom']; ?></td>
+          <td><?= $row['remaks']; ?></td>
         </tr>
+      <?php endforeach; ?>
       </table>
 
 

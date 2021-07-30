@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-plus"></i>
                 CREATE
               </button>
             </div>

@@ -85,7 +85,7 @@
                     </div>
                   <?php } ?>
                 </div>
-                <button type="submit" class="btn btn-info">CREATE</button>
+                <button type="submit" class="btn btn-info float-right">CREATE</button>
               </div>
             </form>
           </div>

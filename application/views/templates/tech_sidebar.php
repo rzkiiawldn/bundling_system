@@ -131,7 +131,7 @@
           <!-- REPORTS -->
           <li class="nav-item <?= $this->uri->segment(2) == 'reports' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 REPORTS
                 <i class="fas fa-angle-left right"></i>
@@ -156,7 +156,7 @@
           <!-- REPORTS -->
           <li class="nav-item <?= $this->uri->segment(2) == 'setup' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-user-cog"></i>
               <p>
                 SETUP
                 <i class="fas fa-angle-left right"></i>
@@ -269,7 +269,7 @@
           <!-- REPORTS -->
           <li class="nav-item <?= $this->uri->segment(2) == 'reports' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 REPORTS
                 <i class="fas fa-angle-left right"></i>
@@ -291,10 +291,10 @@
             </ul>
           </li>
 
-          <!-- REPORTS -->
+          <!-- SETUP -->
           <li class="nav-item <?= $this->uri->segment(2) == 'setup' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-user-cog"></i>
               <p>
                 SETUP
                 <i class="fas fa-angle-left right"></i>
@@ -317,6 +317,18 @@
                 <a href="<?= base_url('tech/setup/client'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Client</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('tech/setup/admin_ops'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin Operation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('tech/setup/spv'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Supervisior</p>
                 </a>
               </li>
               <li class="nav-item">

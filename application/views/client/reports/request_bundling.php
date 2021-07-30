@@ -64,7 +64,7 @@
                         <?php }  ?>
                       </td>
                       <td class="text-center">
-                        <a href="<?= base_url('client/reports/detail_request/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="print"><i class="fas fa-print"></i></a>
+                        <a href="<?= base_url('report/request_bundling/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-default" title="print"><i class="fas fa-print"></i></a>
                         <a href="<?= base_url('client/reports/detail_request/' . $row['id_request_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
                       </td>
                     </tr>

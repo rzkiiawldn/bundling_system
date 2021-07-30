@@ -16,9 +16,9 @@ class Reports extends CI_Controller
     $id_location = $this->session->userdata('id_location');
 
     if ($id1 != null) {
-      $item = $this->db->query("SELECT * FROM news AS inb JOIN client ON inb.id_client = client.id_client WHERE inb.id_client = $id1 AND client.id_location = $id_location")->result_array();
+      $item = $this->db->query("SELECT * FROM news JOIN client ON news.id_client = client.id_client WHERE news.id_client = $id1 AND client.id_location = $id_location")->result_array();
     } else {
-      $item = $this->db->query("SELECT * FROM news AS inb JOIN client ON inb.id_client = client.id_client WHERE client.id_location = $id_location")->result_array();
+      $item = $this->db->query("SELECT * FROM news JOIN client ON news.id_client = client.id_client WHERE client.id_location = $id_location")->result_array();
     }
     $data = [
       'judul'     => 'News Bundling Report',
@@ -107,7 +107,7 @@ class Reports extends CI_Controller
     $data = [
       'judul'       => 'News Bundling Report Detail',
       'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+      'news'        => $this->db->query("SELECT news.id_news AS news_id, news.*, news_detail.*, request_bundling.*, client.* FROM news LEFT JOIN news_detail ON news.id_news = news_detail.id_news LEFT JOIN request_bundling ON news_detail.id_request_bundling = request_bundling.id_request_bundling LEFT JOIN client ON news.id_client = client.id_client WHERE news.id_news = $id")->row_array(),
     ];
     $this->load->view('templates/header', $data);
     $this->load->view('templates/spv_sidebar');
@@ -123,7 +123,7 @@ class Reports extends CI_Controller
       'judul'       => 'News Bundling Report Detail',
       'id_client' => $id1,
       'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+      'news'        => $this->db->query("SELECT news.id_news AS news_id, news.*, news_detail.*, request_bundling.*, client.* FROM news LEFT JOIN news_detail ON news.id_news = news_detail.id_news LEFT JOIN request_bundling ON news_detail.id_request_bundling = request_bundling.id_request_bundling LEFT JOIN client ON news.id_client = client.id_client WHERE news.id_news = $id")->row_array(),
     ];
     $this->load->view('templates/header', $data);
     $this->load->view('templates/spv_sidebar');

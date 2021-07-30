@@ -134,17 +134,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $news_detail = $this->db->get_where('request_bundling', ['id_request_bundling' => $news['id_barang']])->row_array() ?>
-                    <?php $id_item = $news_detail['id_item_bundling']; ?>
-                    <?php $bundling_detail = $this->db->query(" SELECT * FROM item_bundling_detail AS ibd JOIN item_bundling AS ib ON ibd.id_item_bundling = ib.id_item_bundling JOIN client ON ib.id_client = client.id_client WHERE ibd.id_item_bundling = $id_item ")->result_array() ?>
+                    <?php $id = $news['news_id'] ?>
+                    <?php $news_detail = $this->db->query("SELECT * FROM news_detail JOIN news ON news_detail.id_news = news.id_news JOIN request_bundling ON news_detail.id_request_bundling = request_bundling.id_request_bundling LEFT JOIN client ON news.id_client = client.id_client WHERE news.id_news = $id")->result_array(); ?>
                     <?php $no = 1;
-                    foreach ($bundling_detail as $row) : ?>
+                    foreach ($news_detail as $row) : ?>
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $row['client_name']; ?></td>
-                        <td><?= $row['item_qty']; ?></td>
-                        <td>Pcs</td>
-                        <td>DI TERIMA SECARA PCS</td>
+                        <td><?= $row['request_quantity']; ?></td>
+                        <td><?= $row['uom']; ?></td>
+                        <td><?= $row['remaks']; ?></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -167,7 +166,7 @@
               <div class="row no-print" style="margin-top: 150px;">
                 <div class="col-12">
                   <p>* INI ADALAH CETAKAN KOMPUTER, TANDA TANGAN TIDAK DIPERLUKAN</p>
-                  <a href="<?= base_url('report/news_bundling/' . $news['id_news']) ?>" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                  <a href="<?= base_url('report/news_bundling/' . $news['news_id']) ?>" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                 </div>
               </div>
             <?php } ?>

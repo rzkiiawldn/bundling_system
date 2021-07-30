@@ -42,7 +42,6 @@
                     <th>Tanggal</th>
                     <th>Pihak 1</th>
                     <th>Pihak 2</th>
-                    <th>Barang</th>
                     <th>Status</th>
                     <th width="15%">ACTION</th>
                   </tr>
@@ -55,27 +54,26 @@
                       <td><?= $row['tanggal']; ?></td>
                       <td><?= $row['nama_pihak1']; ?></td>
                       <td><?= $row['nama_pihak2']; ?></td>
-                      <td><?= $row['id_barang']; ?></td>
                       <td>
                         <?php if ($row['status'] == 0) { ?>
                           <span class="badge badge-sm badge-warning">Pending</span>
                         <?php } else { ?>
-                          <span class="badge badge-sm badge-success">Diterima</span>
+                          <span class="badge badge-sm badge-success">Approved</span>
                         <?php } ?>
                       </td>
                       <td>
                         <?php if (!empty($this->uri->segment(4))) { ?>
                           <?php if ($row['status'] == 1) { ?>
-                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default" title="print"><i class="fas fa-print"></i></a>
                           <?php } ?>
-                          <a href="<?= base_url('spv/reports/nb_detail_news/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="#" data-toggle="modal" data-target="#edit<?= $row['id_news'] ?>" class="btn btn-sm btn-success" title="ubah status"><i class="fas fa-pen"></i></a>
+                          <a href="<?= base_url('spv/reports/nb_detail_news/' . $this->uri->segment(4) . '/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="view detail"><i class="fas fa-eye"></i></a>
+                          <a href="#" data-toggle="modal" data-target="#edit<?= $row['id_news'] ?>" class="btn btn-sm btn-success" title="validation"><i class="fas fa-check-circle"></i></a>
                         <?php } else { ?>
                           <?php if ($row['status'] == 1) { ?>
-                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i></a>
+                            <a href="<?= base_url('report/news_bundling/' . $row['id_news']) ?>" target="_blank" class="btn btn-default" title="print"><i class="fas fa-print"></i></a>
                           <?php } ?>
-                          <a href="<?= base_url('spv/reports/nb_detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
-                          <a href="#" data-toggle="modal" data-target="#edit<?= $row['id_news'] ?>" class="btn btn-sm btn-success" title="ubah status"><i class="fas fa-pen"></i></a>
+                          <a href="<?= base_url('spv/reports/nb_detail/' . $row['id_news']); ?>" class="btn btn-sm btn-info" title="view detail"><i class="fas fa-eye"></i></a>
+                          <a href="#" data-toggle="modal" data-target="#edit<?= $row['id_news'] ?>" class="btn btn-sm btn-success" title="validation"><i class="fas fa-check-circle"></i></a>
                         <?php } ?>
                       </td>
                     </tr>
@@ -112,17 +110,17 @@
                 <option value="" selected disabled>-- select --</option>
                 <?php if ($row['status'] == 0) { ?>
                   <option value="0" selected>Pending</option>
-                  <option value="1">confirmation</option>
+                  <option value="1">Approved</option>
                 <?php } else { ?>
                   <option value="0">Pending</option>
-                  <option value="1" selected>Confirmation</option>
+                  <option value="1" selected>Approved</option>
                 <?php } ?>
               </select>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Done</button>
           </div>
         </form>
       </div>

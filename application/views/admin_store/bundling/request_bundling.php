@@ -4,11 +4,11 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_store/bundling/rb_create/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <a href="<?= base_url('admin_store/bundling/rb_create/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a>
           <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-            <a href="<?= base_url('admin_store/bundling/rb_create/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <a href="<?= base_url('admin_store/bundling/rb_create/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_store/bundling/rb_create'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <a href="<?= base_url('admin_store/bundling/rb_create'); ?>" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a>
           <?php } ?>
         </div>
         <div class="col-sm-6">
@@ -61,10 +61,12 @@
                       <td><?= $row['request_quantity']; ?></td>
                       <td><?= $row['packing_type']; ?></td>
                       <td>
-                        <?php if ($row['status'] == 'process' || $row['status'] == 'request') { ?>
+                        <?php if ($row['status'] == 'req' || $row['status'] == 'request') { ?>
                           <span class="badge badge-warning"><?= $row['status']; ?></span>
                         <?php } elseif ($row['status'] == 'finish' || $row['status'] == 'success') { ?>
                           <span class="badge badge-success"><?= $row['status']; ?></span>
+                        <?php } elseif ($row['status'] == 'process') { ?>
+                          <span class="badge badge-info"><?= $row['status']; ?></span>
                         <?php } else { ?>
                           <span class="badge badge-danger"><?= $row['status']; ?></span>
                         <?php }  ?>

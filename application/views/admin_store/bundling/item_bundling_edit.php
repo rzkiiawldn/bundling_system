@@ -4,11 +4,11 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(6))) { ?>
-            <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_store/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } ?>
         </div>
       </div>
@@ -104,7 +104,7 @@
                   <?php } ?>
                 </div>
                 <input type="hidden" class="form-control" id="id_item_bundling" name="id_item_bundling" value="<?= $item_bundling['id_item_bundling']; ?>">
-                <button type="submit" class="btn btn-info">Save</button>
+                <button type="submit" class="btn btn-info">SAVE</button>
               </form>
               <div class="alert alert-info pb-2 pt-2 mt-3" role="alert">
                 Detail Information
@@ -195,11 +195,11 @@
                       </table>
                     </div>
                     <?php if (!empty($this->uri->segment(6))) { ?>
-                      <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-danger mt-3">Finish</a>
+                      <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-danger mt-3">UPDATE</a>
                     <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
-                      <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-danger mt-3">Finish</a>
+                      <a href="<?= base_url('admin_store/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-danger mt-3">UPDATE</a>
                     <?php } else { ?>
-                      <a href="<?= base_url('admin_store/bundling/item_bundling') ?>" class="btn btn-danger mt-3">Finish</a>
+                      <a href="<?= base_url('admin_store/bundling/item_bundling') ?>" class="btn btn-danger mt-3">UPDATE</a>
                     <?php } ?>
             </div>
           </div>

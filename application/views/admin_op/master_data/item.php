@@ -43,7 +43,7 @@
                     <th>ITEM NAME</th>
                     <th>BARCODE</th>
                     <th>CATEGORY</th>
-                    <th>Qty</th>
+                    <th>MINIMUM STOCK</th>
                     <th width="15%">ACTION</th>
                   </tr>
                 </thead>

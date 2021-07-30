@@ -54,7 +54,7 @@ class Reports extends CI_Controller
       'judul'     => 'News Bundling Report',
       'nama_menu' => 'reports',
       'user'      => $user,
-      'news'      => $this->db->get_where('news', ['id_client' => $id_client])->result_array()
+      'news'      => $this->db->query(" SELECT * FROM news WHERE news.id_client = $id_client")->result_array()
     ];
     $this->load->view('templates/header', $data);
     $this->load->view('templates/client_sidebar');
@@ -68,7 +68,7 @@ class Reports extends CI_Controller
     $data = [
       'judul'       => 'News Bundling Report Detail',
       'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-      'news'        => $this->db->query("SELECT * FROM news LEFT JOIN request_bundling ON request_bundling.id_request_bundling = news.id_barang LEFT JOIN client ON news.id_client = client.id_client WHERE id_news = $id")->row_array(),
+      'news'        => $this->db->query("SELECT news.id_news AS news_id, news.*, news_detail.*, request_bundling.*, client.* FROM news LEFT JOIN news_detail ON news.id_news = news_detail.id_news LEFT JOIN request_bundling ON news_detail.id_request_bundling = request_bundling.id_request_bundling LEFT JOIN client ON news.id_client = client.id_client WHERE news.id_news = $id")->row_array(),
     ];
     $this->load->view('templates/header', $data);
     $this->load->view('templates/client_sidebar');

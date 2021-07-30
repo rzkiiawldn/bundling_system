@@ -58,7 +58,7 @@
                   <div class="form-group col-md-6">
                     <label>Manage By *</label>
                     <select name="manage_by" id="manage_by" class="form-control">
-                      <option value="" disabled selected>-- pilih --</option>
+                      <option value="" disabled selected>-- select --</option>
                       <?php foreach ($manage_by as $manage) { ?>
                         <option value="<?= $manage ?>"><?= $manage; ?></option>
                       <?php } ?>
@@ -108,7 +108,7 @@
                   <div class="form-group col-md-6">
                     <label>addtional expired *</label>
                     <div class="input-group mb-3">
-                      <input type="number" min="1" class="form-control" placeholder="0" name="additional_expired" aria-describedby="basic-addon1" value="<?= set_value('additional_expired'); ?>">
+                      <input type="number" min="1" class="form-control" name="additional_expired" aria-describedby="basic-addon1" value="<?= set_value('additional_expired'); ?>">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">days</span>
                       </div>
@@ -118,6 +118,7 @@
                   <div class="form-group col-md-6">
                     <label>size *</label>
                     <select name="size" id="size" class="form-control">
+                      <option value="" selected disabled>-- size --</option>
                       <?php foreach ($size as $row) : ?>
                         <option value="<?= $row ?>"><?= $row; ?></option>
                       <?php endforeach; ?>
@@ -159,7 +160,7 @@
                   <div class="form-group col-md-3">
                     <label>weight *</label>
                     <div class="input-group mb-3">
-                      <input type="number" min="1" class="form-control" aria-describedby="basic-addon1" name="weight" value="<?= set_value('weight'); ?>">
+                      <input type="number" step=".01" class="form-control" aria-describedby="basic-addon1" name="weight" value="<?= set_value('weight'); ?>" step>
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">cm</span>
                       </div>
@@ -178,7 +179,7 @@
                   <div class="form-group col-md-4">
                     <label>is_fragile *</label>
                     <select name="is_fragile" id="is_fragile" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- select --</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -187,7 +188,7 @@
                   <div class="form-group col-md-4">
                     <label>active *</label>
                     <select name="active" id="active" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- select --</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -196,7 +197,7 @@
                   <div class="form-group col-md-4">
                     <label>cool_storage *</label>
                     <select name="cool_storage" id="cool_storage" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- select --</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -220,7 +221,7 @@
                     <div class="form-group col-md-6">
                       <label>client *</label>
                       <select name="id_client" id="id_client" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
+                        <option value="" selected disabled>-- select --</option>
                         <?php foreach ($client as $row) : ?>
                           <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
                         <?php endforeach; ?>
@@ -234,7 +235,7 @@
                     <div class="form-group col-md-6">
                       <label>client *</label>
                       <select name="id_client" id="id_client" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
+                        <option value="" selected disabled>-- select --</option>
                         <?php foreach ($client as $row) : ?>
                           <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
                         <?php endforeach; ?>

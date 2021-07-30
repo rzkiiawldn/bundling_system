@@ -42,10 +42,9 @@
         <!-- ============== MENAMPILKAN CLIENT =========================== -->
 
         <!-- JIKA CLIENT TIDAK ADA MAKA TAMPILKAN INI -->
-        <!-- SEBELUMNYA CEK DULU, URI 4 SESUAI ATAU TIDAK DENGAN LOCATION -->
         <!-- JIKA ADA URI 4 MAKA LAKUKAN INI -->
         <?php if (!empty($this->uri->segment(4))) { ?>
-          <!-- KITA CEK DULU, URI 4 nya SAMA ATAU TIDAK DENGAN YANG ADA DI TABEL LOKASI -->
+          <!-- KITA CEK DULU, URI 4 nya SAMA ATAU TIDAK DENGAN YANG ADA DI TABEL CLIENT -->
           <?php $uri4 = $this->db->get_where('client', ['id_client' => $this->uri->segment(4)])->row() ?>
           <!-- JIKA ADA MAKA LAKUKAN INI -->
           <?php if (!empty($uri4)) { ?>

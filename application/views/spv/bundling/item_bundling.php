@@ -58,9 +58,9 @@
                       <td>
                         <!-- jika uri 4 kosong -->
                         <?php if (empty($this->uri->segment(4))) { ?>
-                          <a href="<?= base_url('spv/bundling/detail/' . $row['id_item_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                          <a href="<?= base_url('spv/bundling/detail/' . $row['id_item_bundling']); ?>" class="btn btn-sm btn-info" title="view detail"><i class="fas fa-eye"></i></a>
                         <?php } else { ?>
-                          <a href="<?= base_url('spv/bundling/detail_bundling/' . $this->uri->segment(4) . '/' . $row['id_item_bundling']); ?>" class="btn btn-sm btn-info" title="detail"><i class="fas fa-eye"></i></a>
+                          <a href="<?= base_url('spv/bundling/detail_bundling/' . $this->uri->segment(4) . '/' . $row['id_item_bundling']); ?>" class="btn btn-sm btn-info" title="view detail"><i class="fas fa-eye"></i></a>
                         <?php } ?>
                       </td>
                     </tr>

@@ -59,7 +59,7 @@
                   <div class="form-group col-md-6">
                     <label>Manage By *</label>
                     <select name="manage_by" id="manage_by" class="form-control">
-                      <option value="" disabled selected>-- pilih --</option>
+                      <option value="" disabled selected>-- select --</option>
                       <?php foreach ($manage_by as $manage) { ?>
                         <?php if ($manage == $item_nonbundling['manage_by']) { ?>
                           <option value="<?= $manage ?>" selected><?= $manage; ?></option>
@@ -168,7 +168,7 @@
                   <div class="form-group col-md-3">
                     <label>weight *</label>
                     <div class="input-group mb-3">
-                      <input type="number" min="1" class="form-control" aria-describedby="basic-addon1" name="weight" value="<?= $item_nonbundling['weight']; ?>">
+                      <input type="number" step=".01" class="form-control" aria-describedby="basic-addon1" name="weight" value="<?= $item_nonbundling['weight']; ?>">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">cm</span>
                       </div>
@@ -187,7 +187,7 @@
                   <div class="form-group col-md-4">
                     <label>is_fragile *</label>
                     <select name="is_fragile" id="is_fragile" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- select --</option>
                       <?php foreach ($select as $s) : ?>
                         <?php if ($s == $item_nonbundling['is_fragile']) { ?>
                           <option value="<?= $s ?>" selected><?= $s ?></option>
@@ -201,7 +201,7 @@
                   <div class="form-group col-md-4">
                     <label>active *</label>
                     <select name="active" id="active" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- select --</option>
                       <?php foreach ($select as $s) : ?>
                         <?php if ($s == $item_nonbundling['active']) { ?>
                           <option value="<?= $s ?>" selected><?= $s ?></option>
@@ -215,7 +215,7 @@
                   <div class="form-group col-md-4">
                     <label>cool_storage *</label>
                     <select name="cool_storage" id="cool_storage" class="form-control">
-                      <option value="" selected disabled>-- pilih --</option>
+                      <option value="" selected disabled>-- select --</option>
                       <?php foreach ($select as $s) : ?>
                         <?php if ($s == $item_nonbundling['cool_storage']) { ?>
                           <option value="<?= $s ?>" selected><?= $s ?></option>
@@ -243,7 +243,7 @@
                     <div class="form-group col-md-6">
                       <label>client *</label>
                       <select name="id_client" id="id_client" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
+                        <option value="" selected disabled>-- select --</option>
                         <?php foreach ($client as $row) : ?>
                           <?php if ($row['id_client'] == $item_nonbundling['id_client']) { ?>
                             <option value="<?= $row['id_client'] ?>" selected><?= $row['client_name']; ?></option>
@@ -261,7 +261,7 @@
                     <div class="form-group col-md-6">
                       <label>client *</label>
                       <select name="id_client" id="id_client" class="form-control" required>
-                        <option value="" selected disabled>-- pilih --</option>
+                        <option value="" selected disabled>-- select --</option>
                         <?php foreach ($client as $row) : ?>
                           <?php if ($row['id_client'] == $item_nonbundling['id_client']) { ?>
                             <option value="<?= $row['id_client'] ?>" selected><?= $row['client_name']; ?></option>

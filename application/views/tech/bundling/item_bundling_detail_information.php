@@ -13,10 +13,10 @@
                   <?= $this->session->flashdata('pesan'); ?>
                 </div>
               </div>
-              <?php if (!empty($this->uri->segment(5))) { ?>
-                <form action="<?= base_url('tech/bundling/add_item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" method="post">
-                <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-                  <form action="<?= base_url('tech/bundling/add_item/' . $this->uri->segment(4)); ?>" method="post">
+              <?php if (!empty($this->uri->segment(6))) { ?>
+                <form action="<?= base_url('tech/bundling/add_item/' . $this->uri->segment(5) . '/' . $this->uri->segment(6)); ?>" method="post">
+                <?php } elseif (empty($this->uri->segment(6)) and !empty($this->uri->segment(5))) { ?>
+                  <form action="<?= base_url('tech/bundling/add_item/' . $this->uri->segment(5)); ?>" method="post">
                   <?php } else { ?>
                     <form method="post" action="<?= base_url('tech/bundling/add_item') ?>">
                     <?php } ?>
