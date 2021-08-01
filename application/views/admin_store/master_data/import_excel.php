@@ -23,6 +23,31 @@
                       </div>
                       <?= form_error('file', '<div class="text-danger">', '</div>') ?>
                     </div>
+                    <input type="hidden" name="uri4" value="<?= $this->uri->segment(4) ?>">
+                    <input type="hidden" name="uri5" value="<?= $this->uri->segment(5) ?>">
+                    <?php if (!empty($this->uri->segment(5))) { ?>
+                      <input type="hidden" name="id_client" value="<?= $id_client ?>">
+                    <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
+                      <div class="col-12">
+                        <label class="col-form-label text-md-left">Client</label>
+                        <select name="id_client" id="id_client" class="form-control" required>
+                          <option value="" selected disabled>-- pilih --</option>
+                          <?php foreach ($id_client as $row) : ?>
+                            <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    <?php } else { ?>
+                      <div class="col-12">
+                        <label class="col-form-label text-md-left">Client</label>
+                        <select name="id_client" id="id_client" class="form-control">
+                          <option value="" selected disabled>-- client --</option>
+                          <?php foreach ($id_client as $row) : ?>
+                            <option value="<?= $row['id_client'] ?>"><?= $row['client_name']; ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    <?php }  ?>
                   </div>
                 </div>
               </div>
@@ -30,7 +55,14 @@
             <div class="card-footer text-right">
               <div class="form-group mb-0">
                 <button type="submit" name="import" class="btn btn-primary"><i class="fas fa-upload mr-1"></i>Upload</button>
-                <a href="<?= base_url('admin_store/master_data/item') ?>" class="btn btn-danger"><i class="fas fa-undo-alt mr-2"></i>Back</a>
+
+                <?php if (!empty($this->uri->segment(5))) { ?>
+                  <a href="<?= base_url('admin_store/master_data/item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-danger"><i class="fas fa-undo-alt mr-2"></i>Back</a>
+                <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
+                  <a href="<?= base_url('admin_store/master_data/item/' . $this->uri->segment(4)); ?>" class="btn btn-danger"><i class="fas fa-undo-alt mr-2"></i>Back</a>
+                <?php } else { ?>
+                  <a href="<?= base_url('admin_store/master_data/item') ?>" class="btn btn-danger"><i class="fas fa-undo-alt mr-2"></i>Back</a>
+                <?php } ?>
               </div>
             </div>
           </form>

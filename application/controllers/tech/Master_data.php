@@ -475,12 +475,25 @@ class Master_data extends CI_Controller
 
   // IMPORT EXCEL
 
-  public function excel()
+  public function excel($id_location = null, $id_client = null)
   {
+    $id1 = $id_location;
+    $id2 = $id_client;
+
+    if ($id1 != null and empty($id2)) {
+      $id_client = $this->db->query("SELECT * FROM client WHERE id_location = $id1")->result_array();
+    } elseif ($id2 != null) {
+      $id_client = $id2;
+    } else {
+      $id_client = $this->db->query("SELECT * FROM client")->result_array();
+    }
+
     $data = [
       'judul' => 'Import Excel',
       'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'id_client' => $id_client,
     ];
+
     $this->load->view('templates/header', $data);
     $this->load->view('templates/tech_sidebar');
     $this->load->view('templates/navbar');
@@ -490,6 +503,10 @@ class Master_data extends CI_Controller
 
   public function import_excel()
   {
+
+    $uri4 = $this->input->post('uri4');
+    $uri5 = $this->input->post('uri5');
+    $id_client = $this->input->post('id_client');
     if (isset($_FILES["file"]["name"])) {
       // upload
       $file_tmp = $_FILES['file']['tmp_name'];
@@ -527,7 +544,6 @@ class Master_data extends CI_Controller
           $active = $worksheet->getCellByColumnAndRow(17, $row)->getValue();
           $is_fragile = $worksheet->getCellByColumnAndRow(18, $row)->getValue();
           $cool_storage = $worksheet->getCellByColumnAndRow(19, $row)->getValue();
-          $id_client = $worksheet->getCellByColumnAndRow(20, $row)->getValue();
 
           $data[] = array(
             'item_nonbundling_code'           => $item_nonbundling_code,
@@ -564,14 +580,26 @@ class Master_data extends CI_Controller
       );
 
       $this->session->set_flashdata($message);
-      redirect('tech/master_data/item');
+      if (!empty($uri5)) {
+        redirect('tech/master_data/item/' . $uri4 . '/' . $uri5);
+      } elseif (empty($uri5) and !empty($uri4)) {
+        redirect('tech/master_data/item/' . $uri4);
+      } else {
+        redirect('tech/master_data/item');
+      }
     } else {
       $message = array(
         'message' => '<div class="alert alert-danger">Import file gagal, coba lagi</div>',
       );
 
       $this->session->set_flashdata($message);
-      redirect('tech/master_data/excel');
+      if (!empty($uri5)) {
+        redirect('tech/master_data/excel/' . $uri4 . '/' . $uri5);
+      } elseif (empty($uri5) and !empty($uri4)) {
+        redirect('tech/master_data/excel/' . $uri4);
+      } else {
+        redirect('tech/master_data/excel');
+      }
     }
   }
 }

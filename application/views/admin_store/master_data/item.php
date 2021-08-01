@@ -10,7 +10,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <a class="dropdown-item" href="<?= base_url('admin_store/master_data/create_item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>">CREATE</a>
-                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/excel'); ?>">UPLOAD ITEM</a>
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/excel/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>">UPLOAD ITEM</a>
               </div>
             </div>
             <!-- <a href="" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a> -->
@@ -21,7 +21,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <a class="dropdown-item" href="<?= base_url('admin_store/master_data/create_item/' . $this->uri->segment(4)); ?>">CREATE</a>
-                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/excel'); ?>">UPLOAD ITEM</a>
+                <a class="dropdown-item" href="<?= base_url('admin_store/master_data/excel/' . $this->uri->segment(4)); ?>">UPLOAD ITEM</a>
               </div>
             </div>
             <!-- <a href="" class="btn btn-info text-light"> <i class="fas fa-plus"></i> CREATE</a> -->
