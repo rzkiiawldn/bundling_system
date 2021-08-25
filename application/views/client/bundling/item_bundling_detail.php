@@ -49,7 +49,7 @@
                 <div class="col-md-6 pt-0 mt-0">
                   <div class="form-group">
                     <label class="pt-0 mt-0">Active</label>
-                    <p class="mb-0 pb-0"><?= $item_bundling['id_item_bundling']; ?></p>
+                    <p class="mb-0 pb-0"><?= $item_bundling['active']; ?></p>
                     <hr class="mt-0 pt-0">
                   </div>
                 </div>

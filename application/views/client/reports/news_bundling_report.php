@@ -3,7 +3,14 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-
+          <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More Action
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a class="dropdown-item" href="<?= base_url('client/reports/summary_reports'); ?>">SUMMARY REPORTS</a>
+            </div>
+          </div>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">

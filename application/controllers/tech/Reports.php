@@ -642,4 +642,24 @@ class Reports extends CI_Controller
     $this->load->view('tech/reports/news_bundling_detail');
     $this->load->view('templates/footer');
   }
+
+  public function summary_reports($id_location = null, $id_client = null)
+  {
+    $id1 = $id_location;
+    $id2 = $id_client;
+    $data = [
+      'judul'         => 'REPORTING INFORMATION',
+      'id_location'   => $id1,
+      'id_client'     => $id2,
+      'location'      => $this->db->get('location')->result_array(),
+      'user'          => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'request'       => $this->db->get('request_bundling')->result_array()
+    ];
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/tech_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('tech/reports/summary_reports');
+    $this->load->view('templates/footer');
+  }
 }

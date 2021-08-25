@@ -10,8 +10,12 @@
 </head><body>
 
   <center>
+  <p style="margin-top:0px">
+    <b>LAPORAN PERMINTAAN BUNDLING</b> <br><br>
+           
+    </p>
     <table width="820">
-      <tr>
+      <tr> 
       	<td width="250">
       		<p style="margin-top: 55px">From <br> <strong><?= $request_bundling['created']; ?></strong>
       			<br>
@@ -30,12 +34,12 @@
         	</p>
         </td>
       </tr>    
-    </table><br><br><br>
+    </table><br>
 
-    <table width="100%" style="text-align: left;margin-top: 5px;" border="1">
-      <tr style="margin-bottom: 5">
-        <td><b>Code</b></td>
-        <td><b>Produk</b></td>
+    <table width="100%" style="text-align: center;margin-top: 5px;" border="1">
+      <tr style="margin-bottom: 5" >
+        <td><b>Code Request Bundling</b></td>
+        <td><b>Product</b></td>
         <td><b>Marketplace</b></td>
         <td><b>Quantity</b></td>
         <td><b>Weight</b></td>
@@ -44,7 +48,7 @@
 	    <?php $bundling = $this->db->query(" SELECT * FROM item_bundling WHERE id_item_bundling = $item ")->result_array() ?>
 	    <?php $bundling_detail = $this->db->query(" SELECT * FROM item_bundling_detail AS ibd JOIN item_bundling AS ib ON ibd.id_item_bundling = ib.id_item_bundling JOIN item_nonbundling AS inb ON ibd.id_item_nonbundling = inb.id_item_nonbundling WHERE ibd.id_item_bundling = $item ")->result_array() ?>
 	    <?php foreach ($bundling as $row) : ?>
-      <tr>
+      <tr > 
                         <td>
                           <?= $request_bundling['request_bundling_code']; ?>
                         </td>
@@ -76,7 +80,7 @@
                           <ul style="margin-top: 45px;list-style-type: none;">
                             <?php foreach ($bundling_detail as $bd) : ?>
                               <li>
-                                <?= $bd['weight']; ?>
+                                <?= $bd['weight']; ?> <b> Kg </b>
                               </li>
                             <?php endforeach; ?>
                           </ul>

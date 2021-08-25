@@ -65,7 +65,7 @@
           <!-- BUNDLING -->
           <li class="nav-item <?= $this->uri->segment(2) == 'bundling' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 BUNDLING
                 <i class="fas fa-angle-left right"></i>
@@ -78,18 +78,30 @@
                   <p>Item Bundling</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?= base_url('spv/bundling/request_bundling/' . $id); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Bundling</p>
+                </a>
+              </li>
             </ul>
           </li>
           <!-- REPORTS -->
           <li class="nav-item <?= $this->uri->segment(2) == 'reports' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 REPORTS
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('spv/reports/report_request_bundling/' . $id); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Bundling</p>
+                </a>
+              </li>
               <li class="nav-item ">
                 <a href="<?= base_url('spv/reports/news_bundling_report/' . $id); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -110,7 +122,7 @@
           <!-- BUNDLING -->
           <li class="nav-item <?= $this->uri->segment(2) == 'bundling' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 BUNDLING
                 <i class="fas fa-angle-left right"></i>
@@ -123,18 +135,30 @@
                   <p>Item Bundling</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?= base_url('spv/bundling/request_bundling'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Bundling</p>
+                </a>
+              </li>
             </ul>
           </li>
           <!-- REPORTS -->
           <li class="nav-item <?= $this->uri->segment(2) == 'reports' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 REPORTS
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('spv/reports/report_request_bundling'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Bundling</p>
+                </a>
+              </li>
               <li class="nav-item ">
                 <a href="<?= base_url('spv/reports/news_bundling_report'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

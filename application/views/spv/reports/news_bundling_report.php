@@ -3,7 +3,14 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-
+          <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More Action
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a class="dropdown-item" href="<?= base_url('spv/reports/summary_reports/' . $this->uri->segment(4)); ?>">SUMMARY REPORTS</a>
+            </div>
+          </div>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -39,9 +46,9 @@
                 <thead>
                   <tr class="text-uppercase">
                     <th width="5%">NO</th>
-                    <th>Tanggal</th>
-                    <th>Pihak 1</th>
-                    <th>Pihak 2</th>
+                    <th>Arrived Date</th>
+                    <th>Client</th>
+                    <th>Staff Operational</th>
                     <th>Status</th>
                     <th width="15%">ACTION</th>
                   </tr>

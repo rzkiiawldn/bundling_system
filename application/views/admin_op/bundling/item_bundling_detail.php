@@ -4,9 +4,9 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_op/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_op/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_op/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_op/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } ?>
         </div>
         <div class="col-sm-6">
@@ -36,14 +36,14 @@
               <div class="row text-uppercase" style="font-size: 14px;">
                 <div class="col-md-6 pt-0 mt-0">
                   <div class="form-group">
-                    <label class="pt-0 mt-0">Item Code</label>
+                    <label class="pt-0 mt-0">Item Bundling Code</label>
                     <p class="mb-0 pb-0"><?= $item_bundling['item_bundling_code']; ?></p>
                     <hr class="mt-0 pt-0">
                   </div>
                 </div>
                 <div class="col-md-6 pt-0 mt-0">
                   <div class="form-group">
-                    <label class="pt-0 mt-0">Item Name</label>
+                    <label class="pt-0 mt-0">Item Bundling Name</label>
                     <p class="mb-0 pb-0"><?= $item_bundling['item_bundling_name']; ?></p>
                     <hr class="mt-0 pt-0">
                   </div>
@@ -58,7 +58,7 @@
                 <div class="col-md-6 pt-0 mt-0">
                   <div class="form-group">
                     <label class="pt-0 mt-0">Active</label>
-                    <p class="mb-0 pb-0"><?= $item_bundling['id_item_bundling']; ?></p>
+                    <p class="mb-0 pb-0"><?= $item_bundling['active']; ?></p>
                     <hr class="mt-0 pt-0">
                   </div>
                 </div>
@@ -93,14 +93,14 @@
               </div>
               <div class="row mt-3">
                 <div class="col-md-12">
-                  <h5>Virtual Bundling Detail</h5>
+                  <h5>Bundling Detail</h5>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <tr>
                         <th>No</th>
-                        <th>Item Name</th>
-                        <th>Item Code</th>
-                        <th>Item Barcode</th>
+                        <th>Item Bundling Name</th>
+                        <th>Item Bundling Code</th>
+                        <th>Item Bundling Barcode</th>
                         <th>Qty</th>
                       </tr> <?php $no = 1;
                             foreach ($item_bundling_detail as $row) : ?>

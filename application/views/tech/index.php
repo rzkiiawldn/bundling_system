@@ -29,7 +29,7 @@
               <p>Item NonBundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-archive"></i>
+              <i class="ion ion-filing"></i>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
               <p>Item Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bookmark"></i>
+              <i class="ion ion-filing"></i>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
               <p>Request Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-archive"></i>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
               <p>Report Request</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="ion ion-document-text"></i>
             </div>
           </div>
         </div>

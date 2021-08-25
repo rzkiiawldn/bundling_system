@@ -29,7 +29,7 @@
             <!-- info row -->
             <div class="row invoice-info">
               <div class="col-6">
-                <h5>Pihak Pertama</h5>
+                <h5>Client</h5>
                 <table style="margin-top: 20px;">
                   <tr>
                     <td width="30px">1.</td>
@@ -54,7 +54,7 @@
                 </table>
               </div>
               <div class="col-6">
-                <h5>Pihak Kedua</h5>
+                <h5>Staff Operational</h5>
                 <table style="margin-top: 20px;">
                   <tr>
                     <td width="30px">2.</td>

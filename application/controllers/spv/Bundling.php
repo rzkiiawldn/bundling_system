@@ -68,4 +68,60 @@ class Bundling extends CI_Controller
     $this->load->view('spv/bundling/item_bundling_detail');
     $this->load->view('templates/footer');
   }
+
+  public function request_bundling($id_client = null)
+  {
+    $id1 = $id_client;
+    $id_location = $this->session->userdata('id_location');
+
+    if ($id1 != null) {
+      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status JOIN client ON rb.id_client = client.id_client WHERE rb.id_client = $id1 AND client.id_location = $id_location")->result_array();
+    } else {
+      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status JOIN client ON rb.id_client = client.id_client WHERE client.id_location = $id_location")->result_array();
+    }
+
+    $user    = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+    $data = [
+      'judul'             => 'Request Bundling',
+      'nama_menu'         => 'bundling',
+      'user'              => $user,
+      'request_bundling'  => $item,
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/bundling/request_bundling');
+    $this->load->view('templates/footer');
+  }
+
+  public function rb_detail($id_request_bundling)
+  {
+    $data = [
+      'judul'             => 'Detail Request Bundling',
+      'nama_menu'         => 'bundling',
+      'user'              => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status WHERE id_request_bundling = $id_request_bundling")->row_array()
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/bundling/request_bundling_detail');
+    $this->load->view('templates/footer');
+  }
+
+  public function rb_detaill($id_client = null,  $id_request_bundling)
+  {
+    $id1 =  $id_client;
+    $data = [
+      'judul'           => 'Detail Request Bundling',
+      'id_client'       => $id1,
+      'user'            => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status WHERE id_request_bundling = $id_request_bundling AND rb.id_client = $id1")->row_array()
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/bundling/request_bundling_detail');
+    $this->load->view('templates/footer');
+  }
 }

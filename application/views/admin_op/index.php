@@ -28,7 +28,7 @@
               <p>Requst Bundling (Process)</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-compass"></i>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
               <p>Requst Bundling (Finish)</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-checkmark"></i>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
               <p>News Bundling Report</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-document-text"></i>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
               <p>Report Request Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-clipboard"></i>
             </div>
           </div>
         </div>

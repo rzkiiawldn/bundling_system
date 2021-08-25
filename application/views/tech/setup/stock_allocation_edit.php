@@ -4,7 +4,7 @@
       <div class="row mb-2 mt-4">
         <div class="col-sm-6">
           <div class="dropdown">
-            <a href="<?= base_url('tech/setup/stock_allocation'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> LIST STOCK</a>
+            <a href="<?= base_url('tech/setup/stock_allocation'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> LIST STOCK</a>
           </div>
         </div>
         <div class="col-sm-6">

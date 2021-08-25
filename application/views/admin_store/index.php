@@ -28,7 +28,7 @@
               <p>Total Item Nonbundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-archive"></i>
             </div>
             <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
           </div>
@@ -41,7 +41,7 @@
               <p>Total Item Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-filing"></i>
             </div>
             <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
           </div>
@@ -54,7 +54,7 @@
               <p>Total Request Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-folder"></i>
             </div>
             <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
           </div>
@@ -65,10 +65,10 @@
           <div class="small-box bg-success">
             <div class="inner">
               <h3><?= $status_request; ?></h3>
-              <p>Requst Bundling (Request)</p>
+              <p>Request Bundling (Request)</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-information-circled"></i>
             </div>
             <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
           </div>
@@ -78,10 +78,10 @@
           <div class="small-box bg-danger">
             <div class="inner">
               <h3><?= $status_cancel; ?></h3>
-              <p>Requst Bundling (Cancel)</p>
+              <p>Request Bundling (Cancel)</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-close-circled"></i>
             </div>
             <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
           </div>

@@ -5,10 +5,10 @@
         <div class="col-sm-6">
           <?php if (empty($this->uri->segment(5))) { ?>
             <?php if ($user['department_id'] == 1 || $user['department_id'] == 2 || $user['department_id'] == 3) { ?>
-              <a href="<?= base_url('admin_op/bundling/item_bundling/create_item/'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+              <a href="<?= base_url('admin_op/bundling/item_bundling/create_item/'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> CREATE</a>
             <?php } ?>
           <?php } else { ?>
-            <a href="<?= base_url('admin_op/bundling/item_bundling/create_item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <a href="<?= base_url('admin_op/bundling/item_bundling/create_item/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> CREATE</a>
           <?php } ?>
         </div>
         <div class="col-sm-6">
@@ -57,9 +57,9 @@
                   foreach ($item_bundling as $row) : ?>
                     <tr>
                       <td><?= $no++; ?></td>
-                      <td><?= $row['item_bundling_name']; ?></td>
                       <td><?= $row['item_bundling_code']; ?></td>
                       <td><?= $row['item_bundling_name']; ?></td>
+                      <td><?= $row['item_bundling_code']; ?></td>
                       <td><?= $row['qty']; ?></td>
                       <td>
                         <?php if (!empty($this->uri->segment(4))) { ?>

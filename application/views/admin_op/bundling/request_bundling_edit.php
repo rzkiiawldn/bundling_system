@@ -4,9 +4,9 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_op/bundling/request_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_op/bundling/request_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_op/bundling/request_bundling'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_op/bundling/request_bundling'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } ?>
         </div>
         <div class="col-sm-6">
@@ -44,7 +44,8 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label>Item Bundling *</label>
-                    <input type="text" readonly class="form-control" id="id_item_bundling" name="id_item_bundling" value="<?= $request_bundling['id_item_bundling']; ?>">
+                    <input type="text" readonly class="form-control" value="<?= $request_bundling['item_bundling_name']; ?>">
+                    <input type="hidden" readonly class="form-control" id="id_item_bundling" name="id_item_bundling" value="<?= $request_bundling['id_item_bundling']; ?>">
                     <?= form_error('id_item_bundling', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
@@ -108,7 +109,7 @@
                   }
                 </script>
 
-                <button type="submit" class="btn btn-info float-right">EDIT</button>
+                <button type="submit" class="btn btn-info float-right">UPDATE</button>
               </div>
             </form>
           </div>

@@ -41,9 +41,9 @@
                 <thead>
                   <tr>
                     <th width="5%">NO</th>
-                    <th>CODE</th>
+                    <th>REQUEST BUNDLING CODE</th>
                     <th>BUNDLING TYPE</th>
-                    <th>ITEM BUNDLING</th>
+                    <th>ITEM BUNDLING NAME</th>
                     <th>Qty</th>
                     <th>PACKING TYPE</th>
                     <th>STATUS</th>

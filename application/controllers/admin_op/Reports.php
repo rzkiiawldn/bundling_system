@@ -71,6 +71,7 @@ class Reports extends CI_Controller
     $id1 = $this->input->post('id1');
     $id_request_bundling = $this->input->post('id_request_bundling');
     $this->db->set('report', 1);
+    $this->db->set('created_by', $this->session->userdata('fullname'));
     $this->db->where('id_request_bundling', $id_request_bundling);
     $this->db->update('request_bundling');
 
@@ -469,5 +470,22 @@ class Reports extends CI_Controller
     $this->db->delete('news');
     $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Data User Berhasil Dihapus</div>');
     redirect('admin_op/reports/news_bundling_report/' . $this->uri->segment(4));
+  }
+
+  public function summary_reports($id_client = null)
+  {
+    $id2 = $id_client;
+    $data = [
+      'judul'         => 'REPORTING INFORMATION',
+      'id_client'     => $id2,
+      'location'      => $this->db->get('location')->result_array(),
+      'user'          => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+    ];
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/admin_op_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('admin_op/reports/summary_reports');
+    $this->load->view('templates/footer');
   }
 }

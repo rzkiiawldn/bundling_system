@@ -32,7 +32,7 @@
               <p>Item Non Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-filling"></i>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
               <p>Item Bundling</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-filling"></i>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
               <p>Request Bundling (process)</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-clock"></i>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
               <p>Request Bundling (finish)</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="ion ion-checkmark-circled"></i>
             </div>
           </div>
         </div>

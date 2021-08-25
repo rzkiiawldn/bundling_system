@@ -694,7 +694,7 @@ class Bundling extends CI_Controller
       'item_bundling'     => $this->db->get('item_bundling')->result_array(),
       'status'            => $this->db->get('status')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
-      'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling WHERE id_request_bundling = $id_request_bundling")->row_array(),
     ];
     $this->form_validation->set_rules('request_bundling_code', 'request_bundling_code', 'required|trim');
     $this->form_validation->set_rules('bundling_type', 'bundling_type', 'required|trim');
@@ -747,7 +747,7 @@ class Bundling extends CI_Controller
       'status'            => $this->db->get('status')->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'id_location'       => $id1,
-      'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling WHERE id_request_bundling = $id_request_bundling")->row_array(),
     ];
     $this->form_validation->set_rules('request_bundling_code', 'request_bundling_code', 'required|trim');
     $this->form_validation->set_rules('bundling_type', 'bundling_type', 'required|trim');
@@ -801,7 +801,7 @@ class Bundling extends CI_Controller
       'status'            => $this->db->get('status')->result_array(),
       'id_location'       => $id1,
       'id_client'         => $id2,
-      'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling WHERE id_request_bundling = $id_request_bundling")->row_array(),
     ];
     $this->form_validation->set_rules('request_bundling_code', 'request_bundling_code', 'required|trim');
     $this->form_validation->set_rules('bundling_type', 'bundling_type', 'required|trim');

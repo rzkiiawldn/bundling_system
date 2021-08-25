@@ -4,11 +4,11 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('admin_store/bundling/request_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/request_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-            <a href="<?= base_url('admin_store/bundling/request_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/request_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('admin_store/bundling/request_bundling'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('admin_store/bundling/request_bundling'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } ?>
         </div>
         <div class="col-sm-6">
@@ -30,12 +30,12 @@
                 <div class="row">
                   <div class="form-group col-md-6">
                     <label>Request Bundling Code *</label>
-                    <input type="text" class="form-control" id="request_bundling_code" onchange="Barcode()" name="request_bundling_code" value="<?= set_value('request_bundling_code'); ?>">
+                    <input type="text" class="form-control" id="request_bundling_code" onchange="Barcode()" name="request_bundling_code" value="<?=$rb_code;?>">
                     <?= form_error('request_bundling_code', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
                     <label>Barcode *</label>
-                    <input type="text" class="form-control" id="request_bundling_barcode" name="request_bundling_barcode" readonly>
+                    <input type="text" class="form-control" id="request_bundling_barcode" name="request_bundling_barcode" value="<?= $rb_code; ?>" readonly>
                     <?= form_error('request_bundling_barcode', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">

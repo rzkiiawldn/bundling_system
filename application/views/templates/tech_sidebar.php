@@ -107,7 +107,7 @@
           <!-- BUNDLING -->
           <li class="nav-item <?= $this->uri->segment(2) == 'bundling' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 BUNDLING
                 <i class="fas fa-angle-left right"></i>
@@ -181,18 +181,7 @@
                   <p>Client</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="<?= base_url('tech/setup/admin_ops'); ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Admin Operation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= base_url('tech/setup/spv'); ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Supervisior</p>
-                </a>
-              </li>
+              
               <li class="nav-item">
                 <a href="<?= base_url('tech/setup/status'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -209,6 +198,18 @@
                 <a href="<?= base_url('tech/setup/stock_allocation'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Stock Allocation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('tech/setup/admin_ops'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin Operation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('tech/setup/spv'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Supervisior</p>
                 </a>
               </li>
             </ul>
@@ -245,7 +246,7 @@
           <!-- BUNDLING -->
           <li class="nav-item <?= $this->uri->segment(2) == 'bundling' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 BUNDLING
                 <i class="fas fa-angle-left right"></i>

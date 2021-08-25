@@ -131,4 +131,75 @@ class Reports extends CI_Controller
     $this->load->view('spv/reports/news_bundling_detail');
     $this->load->view('templates/footer');
   }
+
+  public function summary_reports($id_client = null)
+  {
+    $id2 = $id_client;
+    $data = [
+      'judul'         => 'REPORTING INFORMATION',
+      'id_client'     => $id2,
+      'location'      => $this->db->get('location')->result_array(),
+      'user'          => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+    ];
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/reports/summary_reports');
+    $this->load->view('templates/footer');
+  }
+
+  public function report_request_bundling($id_client = null)
+  {
+    $id1 =  $id_client;
+    $id_location = $this->session->userdata('id_location');
+
+    if ($id1 != null) {
+      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status WHERE rb.id_client = $id1  AND report = 1")->result_array();
+    } else {
+      $item = $this->db->query("SELECT * FROM request_bundling AS rb JOIN client ON rb.id_client = client.id_client JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling JOIN status ON rb.id_status = status.id_status WHERE report = 1 AND client.id_location = $id_location")->result_array();
+    }
+    $data = [
+      'judul'     => 'Report Request Bundling',
+      'user'      => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'request_bundling'  => $item
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/reports/request_bundling');
+    $this->load->view('templates/footer');
+  }
+
+  public function rb_detail($id)
+  {
+    $data = [
+      'judul'       => 'Report Request Bundling',
+      'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'request_bundling'        => $this->db->query("SELECT request_bundling.created_by AS created, request_bundling.*, item_bundling.*, status.*, client.*, stock_allocation.*, location.*, user.*  FROM request_bundling LEFT JOIN item_bundling ON request_bundling.id_item_bundling = item_bundling.id_item_bundling LEFT JOIN status ON request_bundling.id_status = status.id_status LEFT JOIN client ON request_bundling.id_client = client.id_client LEFT JOIN stock_allocation ON client.id_stock_allocation = stock_allocation.id_stock_allocation JOIN location ON client.id_location = location.id_location JOIN user ON client.user_id = user.id_user WHERE id_request_bundling = $id")->row_array(),
+      'request_bundling_total'  => $this->db->query("SELECT request_bundling.created_by AS created, request_bundling.*, item_bundling.*, status.*, client.*, stock_allocation.*, location.*, user.*  FROM request_bundling LEFT JOIN item_bundling ON request_bundling.id_item_bundling = item_bundling.id_item_bundling LEFT JOIN status ON request_bundling.id_status = status.id_status LEFT JOIN client ON request_bundling.id_client = client.id_client LEFT JOIN stock_allocation ON client.id_stock_allocation = stock_allocation.id_stock_allocation JOIN location ON client.id_location = location.id_location JOIN user ON client.user_id = user.id_user WHERE id_request_bundling = $id")->num_rows(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/reports/request_bundling_detail');
+    $this->load->view('templates/footer');
+  }
+
+  public function rb_detaill($id_client = null, $id)
+  {
+    $id1 =  $id_client;
+    $data = [
+      'judul'       => 'Report Request Bundling',
+      'id_client' => $id1,
+      'user'        => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+      'request_bundling'        => $this->db->query("SELECT request_bundling.created_by AS created, request_bundling.*, item_bundling.*, status.*, client.*, stock_allocation.*, location.*, user.*  FROM request_bundling LEFT JOIN item_bundling ON request_bundling.id_item_bundling = item_bundling.id_item_bundling LEFT JOIN status ON request_bundling.id_status = status.id_status LEFT JOIN client ON request_bundling.id_client = client.id_client LEFT JOIN stock_allocation ON client.id_stock_allocation = stock_allocation.id_stock_allocation JOIN location ON client.id_location = location.id_location JOIN user ON client.user_id = user.id_user WHERE id_request_bundling = $id")->row_array(),
+      'request_bundling_total'  => $this->db->query("SELECT request_bundling.created_by AS created, request_bundling.*, item_bundling.*, status.*, client.*, stock_allocation.*, location.*, user.*  FROM request_bundling LEFT JOIN item_bundling ON request_bundling.id_item_bundling = item_bundling.id_item_bundling LEFT JOIN status ON request_bundling.id_status = status.id_status LEFT JOIN client ON request_bundling.id_client = client.id_client LEFT JOIN stock_allocation ON client.id_stock_allocation = stock_allocation.id_stock_allocation JOIN location ON client.id_location = location.id_location JOIN user ON client.user_id = user.id_user WHERE id_request_bundling = $id")->num_rows(),
+    ];
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/spv_sidebar');
+    $this->load->view('templates/navbar');
+    $this->load->view('spv/reports/request_bundling_detail');
+    $this->load->view('templates/footer');
+  }
 }

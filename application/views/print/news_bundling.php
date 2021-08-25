@@ -17,8 +17,8 @@ body {
         <center>
           <img src="<?= $gambar; ?>" width="250" style="margin-top:-60px"><br>
           <p style="margin-top:-10px">
-            <b>Haistar</b> <br>
-          Alamat
+            <b>PT BINTANG DAGANG INTERNASIONAL (Haistar)</b> <br>
+            Alamat Jl. Kemandoran I No.37, RT.13/RW.3, Grogol Utara, Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12210
         </p>
         </center>
         </td>
@@ -29,8 +29,9 @@ body {
       <tr>
         <td>
           <center>
-           <p style="margin-top:0px">
-            <b>BERITA ACARA SERAH TERIMA BARANG</b> <br><br>
+           <p style="margin-top:0px;text-transform: uppercase;">
+            <b>BERITA ACARA SERAH TERIMA BARANG BUNDLING</b> <br>
+            <b>NO : Haistar/Kemandoran/<?= date('Y'); ?>/<?= date('M'); ?>/<?= date('D'); ?>/00<?= rand(1, 100); ?></b> <br><br>
            
           </p>
           </center>
@@ -54,7 +55,7 @@ body {
             </tr>
             <tr>
               <td></td>
-              <td width="80px">Dept</td>
+              <td width="80px">Departemen</td>
               <td>:</td>
               <td><?= $news['dept_pihak2']; ?></td>
             </tr>
@@ -85,7 +86,7 @@ body {
             </tr>
             <tr>
               <td></td>
-              <td width="80px">Dept</td>
+              <td width="80px">Departemen</td>
               <td>:</td>
               <td><?= $news['dept_pihak1']; ?></td>
             </tr>
@@ -115,7 +116,7 @@ body {
               <?php $news_detail = $this->db->query("SELECT * FROM news_detail JOIN news ON news_detail.id_news = news.id_news JOIN request_bundling ON news_detail.id_request_bundling = request_bundling.id_request_bundling LEFT JOIN client ON news.id_client = client.id_client WHERE news.id_news = $id")->result_array(); ?>
               <?php $no = 1;
               foreach ($news_detail as $row) : ?>
-          <tr>
+          <tr style="text-align:center"> 
             <td><?= $no++; ?></td>
             <td><?= $row['client_name']; ?></td>
             <td><?= $row['request_quantity']; ?></td>
@@ -171,7 +172,7 @@ body {
 
       <div style="text-align: right;">
           <p style="margin-bottom:20px">
-            <b>BERITA ACARA PENERIMAAN BARANG</b><br><br>
+            <b>BERITA ACARA PENERIMAAN BARANG BUNDLING</b><br><br>
         </p>
       </div>
 
@@ -214,22 +215,22 @@ body {
       </table>
 
       <table border="1" width="100%" style="margin-top:20px">
-        <tr>
+        <tr> 
           <th>No</th>
           <th>Client</th>
           <th>Code</th>
-          <th>News Deskripsi</th>
+          <!-- <th>News Deskripsi</th> -->
           <th>Qty</th>
           <th>UoM</th>
           <th>Remaks</th>
         </tr>
           <?php $no=1; ?>
         <?php foreach($news_detail as $row): ?>
-        <tr>
+        <tr style="text-align:center">
           <td><?= $no++; ?></td>
           <td><?= $row['client_name']; ?></td>
           <td><?= $row['request_bundling_code'] ?></td>
-          <td></td>
+          <!-- <td></td> -->
           <td><?= $row['request_quantity']; ?></td>
           <td><?= $row['uom']; ?></td>
           <td><?= $row['remaks']; ?></td>

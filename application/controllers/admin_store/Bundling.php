@@ -7,6 +7,7 @@ class Bundling extends CI_Controller
   {
     parent::__construct();
     belum_login();
+    $this->load->model("M_request");
     date_default_timezone_set('Asia/Jakarta');
   }
 
@@ -653,6 +654,8 @@ class Bundling extends CI_Controller
     $this->form_validation->set_rules('packing_type', 'packing_type', 'required|trim');
     $this->form_validation->set_rules('id_status', 'id_status', 'required|trim');
 
+    $data['rb_code'] = $this->M_request->autocode();
+
     if ($this->form_validation->run() == false) {
       $this->load->view('templates/header', $data);
       $this->load->view('templates/admin_store_sidebar');
@@ -694,7 +697,7 @@ class Bundling extends CI_Controller
       'item_bundling'     => $this->db->get('item_bundling')->result_array(),
       'status'            => $this->db->get_where('status', ['status !=' => 'finish', 'status !=' => 'success'])->result_array(),
       'location'          => $this->db->get('location')->result_array(),
-      'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling WHERE id_request_bundling = $id_request_bundling")->row_array(),
     ];
     $this->form_validation->set_rules('request_bundling_code', 'request_bundling_code', 'required|trim');
     $this->form_validation->set_rules('bundling_type', 'bundling_type', 'required|trim');
@@ -747,7 +750,7 @@ class Bundling extends CI_Controller
       'status'            => $this->db->get_where('status', ['status !=' => 'finish', 'status !=' => 'success'])->result_array(),
       'location'          => $this->db->get('location')->result_array(),
       'id_location'       => $id1,
-      'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling WHERE id_request_bundling = $id_request_bundling")->row_array(),
     ];
     $this->form_validation->set_rules('request_bundling_code', 'request_bundling_code', 'required|trim');
     $this->form_validation->set_rules('bundling_type', 'bundling_type', 'required|trim');
@@ -801,7 +804,7 @@ class Bundling extends CI_Controller
       'status'            => $this->db->get_where('status', ['status !=' => 'finish', 'status !=' => 'success'])->result_array(),
       'id_location'       => $id1,
       'id_client'         => $id2,
-      'request_bundling'  => $this->db->get_where('request_bundling', ['id_request_bundling' => $id_request_bundling])->row_array(),
+      'request_bundling'  => $this->db->query("SELECT * FROM request_bundling AS rb JOIN item_bundling AS ib ON rb.id_item_bundling = ib.id_item_bundling WHERE id_request_bundling = $id_request_bundling")->row_array(),
     ];
     $this->form_validation->set_rules('request_bundling_code', 'request_bundling_code', 'required|trim');
     $this->form_validation->set_rules('bundling_type', 'bundling_type', 'required|trim');

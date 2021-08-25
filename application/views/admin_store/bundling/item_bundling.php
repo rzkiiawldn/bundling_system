@@ -59,9 +59,9 @@
                   foreach ($item_bundling as $row) : ?>
                     <tr>
                       <td><?= $no++; ?></td>
-                      <td><?= $row['item_bundling_name']; ?></td>
                       <td><?= $row['item_bundling_code']; ?></td>
                       <td><?= $row['item_bundling_name']; ?></td>
+                      <td><?= $row['item_bundling_code']; ?></td>
                       <td><?= $row['qty']; ?></td>
                       <td>
                         <?php if (!empty($this->uri->segment(5))) { ?>

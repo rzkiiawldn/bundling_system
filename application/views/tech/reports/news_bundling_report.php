@@ -4,11 +4,35 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('tech/reports/nb_create/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="<?= base_url('tech/reports/nb_create/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>">CREATE</a>
+                <a class="dropdown-item" href="<?= base_url('tech/reports/summary_reports/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>">SUMMARY REPORTS</a>
+              </div>
+            </div>
           <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-            <a href="<?= base_url('tech/reports/nb_create/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="<?= base_url('tech/reports/nb_create/' . $this->uri->segment(4)); ?>">CREATE</a>
+                <a class="dropdown-item" href="<?= base_url('tech/reports/summary_reports/' . $this->uri->segment(4)); ?>">SUMMARY REPORTS</a>
+              </div>
+            </div>
           <?php } else { ?>
-            <a href="<?= base_url('tech/reports/nb_create'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> CREATE</a>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="<?= base_url('tech/reports/nb_create'); ?>">CREATE</a>
+                <a class="dropdown-item" href="<?= base_url('tech/reports/summary_reports'); ?>">SUMMARY REPORTS</a>
+              </div>
+            </div>
           <?php } ?>
 
         </div>
@@ -42,9 +66,9 @@
                 <thead class="text-uppercase">
                   <tr>
                     <th width="5%">NO</th>
-                    <th>Tanggal</th>
-                    <th>Pihak 1</th>
-                    <th>Pihak 2</th>
+                    <th>Arrived Date</th>
+                    <th>Client</th>
+                    <th>Staff OPerational</th>
                     <th>Status</th>
                     <th width="20%">ACTION</th>
                   </tr>

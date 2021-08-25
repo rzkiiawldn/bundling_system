@@ -46,7 +46,8 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label>Item Bundling *</label>
-                    <input type="text" readonly class="form-control" id="id_item_bundling" name="id_item_bundling" value="<?= $request_bundling['id_item_bundling']; ?>">
+                    <input type="text" readonly class="form-control" value="<?= $request_bundling['item_bundling_name']; ?>">
+                    <input type="hidden" readonly class="form-control" id="id_item_bundling" name="id_item_bundling" value="<?= $request_bundling['id_item_bundling']; ?>">
 
                     <!-- <select name="id_item_bundling" id="id_item_bundling" class="form-control">
                       <option value="" selected disabled>-- pilih --</option>

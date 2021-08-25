@@ -66,7 +66,7 @@
                     <?= form_error('manage_by', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>description *</label>
+                    <label>Description *</label>
                     <input type="text" class="form-control" id="description" name="description" value="<?= set_value('description'); ?>">
                     <?= form_error('description', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
@@ -76,17 +76,17 @@
                     <?= form_error('brand', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>model *</label>
+                    <label>Model *</label>
                     <input type="text" class="form-control" id="model" name="model" value="<?= set_value('model'); ?>">
                     <?= form_error('model', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>category *</label>
+                    <label>Category *</label>
                     <input type="text" class="form-control" id="category" name="category" value="<?= set_value('category'); ?>">
                     <?= form_error('category', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>minimum stock *</label>
+                    <label>Minimum stock *</label>
                     <div class="input-group mb-3">
                       <input type="number" min="1" class="form-control" aria-describedby="basic-addon1" name="minimum_stock" value="<?= set_value('minimum_stock'); ?>">
                       <div class="input-group-prepend">
@@ -106,7 +106,7 @@
                     <?= form_error('publish_price', '<small class="text-danger pl-2">', '</small>'); ?>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>addtional expired *</label>
+                    <label>addtional expired </label>
                     <div class="input-group mb-3">
                       <input type="number" min="1" class="form-control" name="additional_expired" aria-describedby="basic-addon1" value="<?= set_value('additional_expired'); ?>">
                       <div class="input-group-prepend">

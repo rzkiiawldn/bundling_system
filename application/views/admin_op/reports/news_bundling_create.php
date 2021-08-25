@@ -53,7 +53,7 @@
                 </div>
                 <div class="row mt-3">
                   <div class="col-12">
-                    <h4>ADMIN OPERATION</h4>
+                    <h4>ADMIN OPERATIONAL</h4>
                     <hr>
                   </div>
                   <div class="form-group col-md-4">

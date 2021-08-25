@@ -105,7 +105,7 @@
           <!-- BUNDLING -->
           <li class="nav-item <?= $this->uri->segment(2) == 'bundling' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 BUNDLING
                 <i class="fas fa-angle-left right"></i>
@@ -159,7 +159,7 @@
           <!-- BUNDLING -->
           <li class="nav-item <?= $this->uri->segment(2) == 'bundling' ? 'menu-open' : null; ?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-database"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 BUNDLING
                 <i class="fas fa-angle-left right"></i>

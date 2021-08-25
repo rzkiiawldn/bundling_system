@@ -4,11 +4,11 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <?php if (!empty($this->uri->segment(5))) { ?>
-            <a href="<?= base_url('tech/bundling/item_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('tech/bundling/item_bundling/' . $this->uri->segment(4) . '/' . $this->uri->segment(5)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } elseif (empty($this->uri->segment(5)) and !empty($this->uri->segment(4))) { ?>
-            <a href="<?= base_url('tech/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('tech/bundling/item_bundling/' . $this->uri->segment(4)); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } else { ?>
-            <a href="<?= base_url('tech/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="far fa-sticky-note mr-2"></i> BACK</a>
+            <a href="<?= base_url('tech/bundling/item_bundling'); ?>" class="btn btn-info text-light"> <i class="fas fa-undo-alt"></i> BACK</a>
           <?php } ?>
         </div>
       </div>

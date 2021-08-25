@@ -43,7 +43,7 @@ class Dashboard extends CI_Controller
     }
 
     $data = [
-      'judul'     => 'WELCOME TO PT BINTANG DAGANG INTERNASIONAL - HAISTAR',
+      'judul'     => 'PT BINTANG DAGANG INTERNASIONAL - HAISTAR',
       'user'      => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
       'item_nonbundling'  => $item_nonbundling,
       'item_bundling'     => $item_bundling,

@@ -32,7 +32,7 @@
               <p>New Bundling Pending</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-clock"></i>
             </div>
           </div>
         </div>
@@ -43,10 +43,10 @@
             <div class="inner">
               <h3><?= $news_finish; ?></h3>
 
-              <p>News Bundling Finish</p>
+              <p>News Bundling Approved</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-checkmark-circled"></i>
             </div>
           </div>
         </div>
